@@ -6,5 +6,4 @@
 .idea
 
 # Ignore files/folders related to packaging
-/packaging
-/joomlarrssb.zip
+/build/joomladata.zip
