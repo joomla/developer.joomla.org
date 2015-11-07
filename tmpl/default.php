@@ -43,7 +43,11 @@ foreach ($chartData as $row)
 <canvas id="<?php echo $containerId; ?>" width="<?php echo $params->get('containerWidth', 400); ?>" height="<?php echo $params->get('containerHeight', 400); ?>"></canvas>
 
 <script type="text/javascript">
+	var options = {
+	    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%"
+	}
+
 	var data = [<?php echo $dataRows; ?>];
 	var <?php echo "ctx{$module->id}"; ?> = document.getElementById('<?php echo $containerId; ?>').getContext('2d');
-	var myNewChart = new Chart(<?php echo "ctx{$module->id}"; ?>).<?php echo $chartType; ?>(data);
+	var myNewChart = new Chart(<?php echo "ctx{$module->id}"; ?>).<?php echo $chartType; ?>(data, options);
 </script>
