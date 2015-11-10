@@ -47,10 +47,13 @@ $language = JFactory::getLanguage();
 switch ($dataSource)
 {
 	case 'server_os':
+		// Sort the data
+		arsort($rawData['data']['server_os']);
+
 		// Convert the raw data into the structure used by the chart
 		$chartData = [];
 
-		foreach ($rawData['data'][$dataSource] as $os => $count)
+		foreach ($rawData['data']['server_os'] as $os => $count)
 		{
 			$label       = ($os == 'unknown') ? JText::_('MOD_JOOMLADATA_LABEL_UNKNOWN_SERVER') : $os;
 			$chartData[] = ['name' => $label, 'count' => $count];
@@ -59,10 +62,13 @@ switch ($dataSource)
 		break;
 
 	case 'php_version':
+		// Sort the data
+		ksort($rawData['data']['php_version']);
+
 		// Convert the raw data into the structure used by the chart
 		$chartData = [];
 
-		foreach ($rawData['data'][$dataSource] as $version => $count)
+		foreach ($rawData['data']['php_version'] as $version => $count)
 		{
 			$chartData[] = ['name' => $version, 'count' => $count];
 		}
@@ -70,6 +76,16 @@ switch ($dataSource)
 		break;
 
 	default:
+		// Sort the data
+		if ($dataSource == 'db_version' || $dataSource == 'cms_version')
+		{
+			ksort($rawData['data'][$dataSource]);
+		}
+		else
+		{
+			arsort($rawData['data'][$dataSource]);
+		}
+
 		// Convert the raw data into the structure used by the chart
 		$chartData = [];
 
