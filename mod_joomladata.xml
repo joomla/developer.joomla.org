@@ -6,7 +6,7 @@
 	<copyright>Copyright (C) 2015 Open Source Matters. All rights reserved.</copyright>
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>https://www.joomla.org</authorUrl>
-	<version>0.0.1</version>
+	<version>2.0.0</version>
 	<license>GNU/GPL Version 2 or later</license>
 	<description>MOD_JOOMLADATA_XML_DESCRIPTION</description>
 	<files>
@@ -34,12 +34,10 @@
 					<!-- <option value="Bar">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_BAR</option> -->
 					<option value="Doughnut">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_DOUGHNUT</option>
 					<!-- <option value="Line">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_LINE</option> -->
-					<option value="Pie">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_PIE</option>
-					<option value="PolarArea">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_POLARAREA</option>
+					<!-- <option value="Pie">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_PIE</option> -->
+					<!-- <option value="PolarArea">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_POLARAREA</option> -->
 					<!-- <option value="Radar">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_RADAR</option> -->
 				</field>
-				<field name="containerWidth" type="text" filter="uint" default="400" label="MOD_JOOMLADATA_FIELDSET_BASIC_CONTAINERWIDTH_LABEL" description="MOD_JOOMLADATA_FIELDSET_BASIC_CONTAINERWIDTH_DESCRIPTION" />
-				<field name="containerHeight" type="text" filter="uint" default="400" label="MOD_JOOMLADATA_FIELDSET_BASIC_CONTAINERHEIGHT_LABEL" description="MOD_JOOMLADATA_FIELDSET_BASIC_CONTAINERHEIGHT_DESCRIPTION" />
 			</fieldset>
 		</fields>
 	</config>

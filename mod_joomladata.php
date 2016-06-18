@@ -8,8 +8,20 @@
 
 defined('_JEXEC') or die;
 
-/* @type  \Joomla\Registry\Registry $params */
-/* @type  object $module */
+/**
+ * Module variables
+ * -----------------
+ * @var   object                     $module    A module object
+ * @var   array                      $attribs   An array of attributes for the module (probably from the XML)
+ * @var   array                      $chrome    The loaded module chrome files
+ * @var   JApplicationCms            $app       The active application singleton
+ * @var   string                     $scope     The application scope before the module was included
+ * @var   \Joomla\Registry\Registry  $params    Module parameters
+ * @var   string                     $template  The active template
+ * @var   string                     $path      The path to this module file
+ * @var   JLanguage                  $lang      The active JLanguage singleton
+ * @var   string                     $content   Module output content
+ */
 
 // Include the helper
 JLoader::register('JoomlaStatChartsHelper', __DIR__ . '/helper.php');
@@ -39,9 +51,6 @@ if ($response->code !== 200)
 
 // Extract our data
 $rawData = json_decode($response->body, true);
-
-// Where practical, let's use language strings for the chart labels
-$language = JFactory::getLanguage();
 
 // For a more readable output, we're going to merge some data together
 switch ($dataSource)
@@ -92,7 +101,7 @@ switch ($dataSource)
 		foreach ($rawData['data'][$dataSource] as $group => $value)
 		{
 			$key         = 'MOD_JOOMLADATA_LABEL_' . strtoupper($group);
-			$label       = $language->hasKey($key) ? JText::_($key) : $group;
+			$label       = $lang->hasKey($key) ? JText::_($key) : $group;
 			$chartData[] = ['name' => $label, 'count' => $value];
 		}
 
