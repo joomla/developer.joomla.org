@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+	<layout title="COM_TRACKERSTATS_VIEW_WIKI_TITLE" option="COM_TRACKERSTATS_VIEW_WIKI_OPTION">
+		<message>
+			<![CDATA[COM_TRACKERSTATS_VIEW_WIKI_DESC]]>
+		</message>
+	</layout>
+</metadata>

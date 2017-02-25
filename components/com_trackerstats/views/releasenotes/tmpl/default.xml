@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<metadata>
+	<layout title="COM_TRACKERSTATS_VIEW_RELEASENOTES_TITLE" option="COM_TRACKERSTATS_VIEW_RELEASENOTES_OPTION">
+		<message>
+			<![CDATA[COM_TRACKERSTATS_VIEW_RELEASENOTES_DESC]]>
+		</message>
+	</layout>
+
+
+	<!-- Add fields to the parameters object for the layout. -->
+	<fields name="params">
+		<!-- Basic options. -->
+		<fieldset name="basic">
+		<!-- Add fields to the parameters object for the layout. -->
+				<field name="start_date" type="calendar"
+					format="%Y-%m-%d"
+					label="COM_TRACKERSTATS_RELEASENOTES_FIELD_STARTDATE_LABEL"
+					description="COM_TRACKERSTATS_RELEASENOTES_FIELD_STARTDATE_DESC"
+					size="22"
+					filter="user_utc" />
+				<field name="end_date" type="calendar"
+					format="%Y-%m-%d"
+					label="COM_TRACKERSTATS_RELEASENOTES_FIELD_ENDDATE_LABEL"
+					description="COM_TRACKERSTATS_RELEASENOTES_FIELD_ENDDATE_DESC"
+					size="22"
+					filter="user_utc" />
+				<field name="include_issues" type="textarea"
+					label="COM_TRACKERSTATS_RELEASENOTES_FIELD_INCLUDE_ISSUES_LABEL"
+					description="COM_TRACKERSTATS_RELEASENOTES_FIELD_INCLUDE_ISSUES_DESC"
+					rows="5" columns="70" />
+				<field name="exclude_issues" type="textarea"
+					label="COM_TRACKERSTATS_RELEASENOTES_FIELD_EXCLUDE_ISSUES_LABEL"
+					description="COM_TRACKERSTATS_RELEASENOTES_FIELD_EXCLUDE_ISSUES_DESC"
+					rows="5" columns="70" />
+		</fieldset>
+	</fields>
+</metadata>
