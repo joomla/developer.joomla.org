@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.2" method="upgrade">
+	<name>com_code</name>
+	<author>Joomla! Project</author>
+	<creationDate>April 2006</creationDate>
+	<copyright>(C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>4.0.0</version>
+	<description>COM_CODE_XML_DESCRIPTION</description>
+
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">install/mysql.install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">install/mysql.uninstall.sql</file>
+		</sql>
+	</uninstall>
+	<update>
+		<schemas>
+			<schemapath type="mysql">install/updates</schemapath>
+		</schemas>
+	</update>
+
+	<files folder="site">
+		<filename>code.php</filename>
+		<filename>controller.php</filename>
+		<filename>metadata.xml</filename>
+		<filename>router.php</filename>
+		<folder>helpers</folder>
+		<folder>language</folder>
+		<folder>media</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+
+	<media destination="com_code" folder="media">
+		<folder>css</folder>
+		<folder>js</folder>
+	</media>
+
+	<administration>
+		<menu link="option=com_code">COM_CODE</menu>
+		<files folder="admin">
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>install</folder>
+			<folder>language</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+			<filename>access.xml</filename>
+			<filename>code.php</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
+		</files>
+	</administration>
+</extension>
+
