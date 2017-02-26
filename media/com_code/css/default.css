@@ -1,0 +1,71 @@
+/**
+ * @package     Joomla.Site
+ * @subpackage  com_code
+ *
+ * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+.trackers .well {
+    background-color: #ffffff;
+    border-color: #2d8bdc;
+    border-left-width: 15px;
+    padding: 10px 19px;
+}
+
+#issue-content h4 {
+    font-size: 15px;
+}
+
+.issue-comment.well,
+.issue-commit.well {
+    padding: 0;
+    background: #fff;
+    margin: 0 1em 2em 1em;
+}
+
+span.comment-owner,
+span.commit-owner {
+    background: #ddd;
+    padding: 1em;
+    display: block;
+    font-weight: bold;
+}
+
+.issue-comment-details,
+.issue-commit-details {
+    padding: 1em;
+}
+
+.issue-tags ul {
+    list-style-type: none;
+    font-size: 14px;
+}
+
+.issue-tags ul li {
+    display: inline-block;
+    margin: 0 1em .5em 0;
+    border: 1px solid #bbbbbb;
+    background: #aaaaaa;
+    color: #fff;
+    padding: .5em;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Advanced search chosen overflow fixes  and button margin-bottom */
+
+button#adv-search-button {
+  margin-bottom: 1em;
+}
+
+#filters-advanced.overflow {
+	overflow: visible;
+}
+
+#filters-advanced select,
+#filters-advanced button {
+	vertical-align: top;
+}
+
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.6" type="plugin" group="finder" method="upgrade">
+	<name>plg_finder_tracker_issues</name>
+	<author>Joomla! Project</author>
+	<creationDate>April 2006</creationDate>
+	<copyright>(C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.</copyright>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>4.0.0</version>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description>PLG_FINDER_TRACKER_ISSUES_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="tracker_issues">tracker_issues.php</filename>
+		<folder>language</folder>
+	</files>
+</extension>

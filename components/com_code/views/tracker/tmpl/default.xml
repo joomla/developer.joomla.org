@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_CODE_MENU_TRACKER_VIEW_TITLE">
+		<message>
+			<![CDATA[COM_CODE_MENU_TRACKER_VIEW_DESC]]>
+		</message>
+	</layout>
+    <fields name="request">
+   		<fieldset name="request">
+   			<field name="tracker_id" type="sql" default="" label="COM_CODE_MENU_TRACKER_VIEW_TRACKER_NAME_LABEL" description="COM_CODE_MENU_TRACKER_VIEW_TRACKER_NAME_DESC" query="SELECT `tracker_id`, `title` FROM `#__code_trackers`" key_field="tracker_id" value_field="title" />
+   		</fieldset>
+   	</fields>
+</metadata>
