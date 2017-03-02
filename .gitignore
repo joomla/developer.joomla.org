@@ -24,6 +24,8 @@
 /components/*
 !/components/com_code
 !/components/com_trackerstats
+/glip/*
+!/glip/jenkins.php
 /images
 /includes
 /language
