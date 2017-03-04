@@ -40,7 +40,6 @@
 
 	<media destination="com_code" folder="media">
 		<folder>css</folder>
-		<folder>js</folder>
 	</media>
 
 	<administration>
