@@ -43,7 +43,7 @@
 !/plugins/finder/tracker_issues
 !/plugins/content
 /plugins/content/*
-!/plugins/content/plg_content_nightlybuilds
+!/plugins/content/nightlybuilds
 /pulls
 /standards
 /templates/*
