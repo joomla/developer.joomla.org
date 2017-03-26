@@ -1,5 +1,82 @@
+/*Sandra - Homepage 2017*/
+.body .container {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+body.site {
+    background-color: #fff;
+}
+.start .span4{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 1);
+    border: 1px solid #ddd;
+}
+.start .span4 img{
+    padding: 4px;
+}  
+.start .caption{
+    padding: 10px;
+}
+.start .btn{
+    border: none;
+    margin-top: 10px;
+}
+.start .btn-primary{
+    padding: 19px;
+    font-weight: bold;	
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.lead {
+    font-family: "Open Sans", sans-serif;
+}
+.itemid-435 h2 {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    margin-top: 30px;
+}
+.itemid-435 .page-header h2 {
+    padding-bottom: 0;
+    margin-top: 12px;
+    font-size: 18px;
+    border-bottom: none;
+}
+.itemid-435 .page-header{
+    border-bottom: none;
+    padding-bottom: 0;	
+}
+
+/*shitty changes - Michael needed here*/
+.itemid-435 .share-container,.itemid-435 .item.column-1 figure,.itemid-435 .item.column-2 figure  {
+    display: none;
+}
+
+/*start module same height*/
+#startcontainer .row-fluid{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+#startcontainer .span4{
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; 
+    display: -webkit-box; 
+    display: -ms-flexbox; 
+    display: flex;
+}
+#startcontainer .caption{
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+}
+/*End 2017 changes*/
+
 .thumbnails .thumbnail,.breadcrumb {
-  border-radius: 0;
+    border-radius: 0;
 }
 .jq15 {
     color: #48576b;
@@ -16,13 +93,13 @@
     line-height: 21px;
 }
 .jq15 .link {
-    background: #47bca5 none repeat scroll 0 0;
+    background: #47bca5;
     border-radius: 2px;
     color: white;
     padding: 8px 18px 10px;
 }
 .jq15.header {
-    background: #545e6c none repeat scroll 0 0;
+    background: #545e6c;
     border-top: 4px solid #29303a;
     color: white;
     margin-top: -20px;
@@ -66,7 +143,7 @@
     padding-left: 30px;
 }
 .jq15.helpers > div:hover {
-    background: #eaedf1 none repeat scroll 0 0;
+    background: #eaedf1;
 }
 .jq15.helpers img {
     display: inline-block;
@@ -96,7 +173,7 @@
     height: auto;
 }
 .jq15.participation .span12 {
-    background: #eaedf1 none repeat scroll 0 0;
+    background: #eaedf1;
     padding: 20px;
 }
 .jq15.participation .span12 h2 {
@@ -133,7 +210,7 @@
     font-size: 30pt;
 }
 .jq15.sponsor.platinium {
-    background: #dadadd none repeat scroll 0 0;
+    background: #dadadd;
     color: #565656;
 }
 .jq15.sponsor.platinium h2 {
@@ -186,21 +263,21 @@
 
 /*SANDRA Sept.*/
 .body .container {
-  border-radius: 0;
+    border-radius: 0;
 }
 .well {
-  border-radius:0;
-  box-shadow: none;
+    border-radius:0;
+    box-shadow: none;
 }
 .accordion-group {
-  border-radius: 0;
+    border-radius: 0;
 }
 .alert {
-  border-radius: 0;
-  text-shadow: none;
+    border-radius: 0;
+    text-shadow: none;
 }
 img.pull-right{
-  margin-left:5px;
+    margin-left:5px;
 }
 
 @media (min-width: 768px) {
@@ -324,39 +401,59 @@ img.pull-right{
 }
 
 /*Responsive Sandra*/
+/*2017*/
+@media only screen and (min-width: 768px) and (max-width: 979px){
+.start .btn-primary{
+    padding: 19px 7px;
+    font-weight: bold;	
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-size: 14px;
+}
+}
+/*2017*/
+@media only screen and (max-width: 767px){
+#startcontainer .row-fluid {
+    display: table;
+}
+.start .span4 img{
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 98%;
+}
+}
 @media only screen and (min-width: 481px) and (max-width: 767px){
 #jform_captcha,.contact-form fieldset  {
-  margin-left:-15px;
-  -webkit-transform:scale(0.90);
-  -ms-transform:scale(0.90);
-  transform:scale(0.90);
+    margin-left: -15px;
+    -webkit-transform: scale(0.90);
+    -ms-transform: scale(0.90);
+    transform: scale(0.90);
 }
 .form-horizontal .form-actions{
-  width:50%;
+    width: 50%;
 }
 }
-
 @media only screen and (max-width: 480px){
 #jform_captcha,.contact-form fieldset  {
-  margin-left:-15px;
-  -webkit-transform:scale(0.90);
-  -ms-transform:scale(0.90);
-  transform:scale(0.90);
+    margin-left: -15px;
+    -webkit-transform: scale(0.90);
+    -ms-transform: scale(0.90);
+    transform: scale(0.90);
 }
 #jform_contact_email_copy-lbl{
-  width:auto;
-  margin-right:10px;
-  float:left;
+    width: auto;
+    margin-right: 10px;
+    float: left;
 }
 .form-horizontal #jform_contact_email_copy{
-  width:auto;
-  float:left;
+    width: auto;
+    float: left;
 }
 .form-horizontal legend,.form-horizontal .form-actions{
-width:80%;
+    width: 80%;
 }
 }
 @media only screen and (max-width: 320px){
-  img.pull-left,img.pull-right{
-    float:none;
+img.pull-left,img.pull-right{
+    float: none;
 }
