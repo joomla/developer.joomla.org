@@ -68,6 +68,24 @@ body.site {
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
 }
+
+/*2017 roadmap*/
+.nav-tabs > li > span.toctitle{
+	border-left: 1px solid #ddd;
+  	border-top: 1px solid #ddd;
+  	border-right: 1px solid #ddd; 
+  	border-radius: 0;
+  	margin-right: 0;
+  	background: #eee;
+}
+#anchorone:target,
+#anchortwo:target,
+#anchorthree:target,
+#anchorfour:target,
+#anchorfive:target{
+    margin-top: -100px;
+    padding-top: 100px;
+}
 /*End 2017 changes*/
 
 .thumbnails .thumbnail,.breadcrumb {
