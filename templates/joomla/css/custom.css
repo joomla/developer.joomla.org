@@ -48,11 +48,6 @@ body.site {
     padding-bottom: 0;	
 }
 
-/*shitty changes - Michael needed here*/
-.itemid-435 .share-container,.itemid-435 .item.column-1 figure,.itemid-435 .item.column-2 figure  {
-    display: none;
-}
-
 /*start module same height*/
 #startcontainer .row-fluid{
     display: -webkit-box;
