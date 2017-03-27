@@ -7,6 +7,9 @@
 body.site {
     background-color: #fff;
 }
+.pull-none.item-image {
+    margin: 9px 0;
+}
 .start .span4{
     margin-top: 20px;
     margin-bottom: 20px;
