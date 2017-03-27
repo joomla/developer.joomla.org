@@ -86,6 +86,11 @@ body.site {
     margin-top: -100px;
     padding-top: 100px;
 }
+
+/*fix for rrssb display*/
+.rrssb-buttons {
+	display: inline-block;
+}
 /*End 2017 changes*/
 
 .thumbnails .thumbnail,.breadcrumb {
