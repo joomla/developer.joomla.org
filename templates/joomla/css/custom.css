@@ -74,12 +74,12 @@ body.site {
 
 /*2017 roadmap*/
 .nav-tabs > li > span.toctitle{
-	border-left: 1px solid #ddd;
-  	border-top: 1px solid #ddd;
-  	border-right: 1px solid #ddd; 
-  	border-radius: 0;
-  	margin-right: 0;
-  	background: #eee;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd; 
+    border-radius: 0;
+    margin-right: 0;
+    background: #eee;
 }
 #anchorone:target,
 #anchortwo:target,
@@ -88,6 +88,55 @@ body.site {
 #anchorfive:target{
     margin-top: -100px;
     padding-top: 100px;
+}
+h2.roadmap:before {
+    background: #1b63a2;
+    bottom: -2px;
+    content: "";
+    height: 3px;
+    position: absolute;
+    width: 50px;
+}
+h2.roadmap {
+    border-bottom: 1px solid #e6eaf0;
+    display: block;
+    padding: 0 0 14px;
+    position: relative;
+    margin: 30px 0 18px;
+    font-size: 24px;
+    line-height: 26px;
+}
+h4.roadmap:before {
+    background: #1b63a2;
+    bottom: -2px;
+    content: "";
+    height: 3px;
+    position: absolute;
+    width: 50px;
+}
+h2.roadmap,
+h3.roadmap,
+h4.roadmap {
+    color: #1b63a2;
+}
+h3.roadmap {
+    font-size: 21px;
+    line-height: 23px;
+    margin-top: 25px;
+}
+h4.roadmap,h4.roadmapteam {
+    font-size: 18px;
+    line-height: 20px;
+    margin-top: 20px;
+}
+h4.roadmap {
+    position: relative;
+    display: block;
+    padding: 0 0 14px;
+}
+h5.roadmap {
+    font-size: 15px;
+    line-height: 17px;
 }
 
 /*fix for rrssb display*/
