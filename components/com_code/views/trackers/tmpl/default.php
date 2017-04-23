@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 // Load the CSS Stylesheet
-JHtml::_('stylesheet', 'com_code/default.css', [], true);
+JHtml::_('stylesheet', 'com_code/default.css', ['version' => 'auto', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
 ?>
 
 <div class="trackers<?php echo $this->pageclass_sfx?>">

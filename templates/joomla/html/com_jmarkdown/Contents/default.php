@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 require_once JPATH_ADMINISTRATOR.'/components/com_jmarkdown/Helper/JMarkdown.php';
 
-JHtml::_('stylesheet', 'github-light.css', [], true, false, false, false);    
+JHtml::_('stylesheet', 'github-light.css', ['version' => '0.3.0', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
 ?>
 <div class="jmarkdown">
 	<div class="row-fluid">

@@ -68,4 +68,6 @@ button#adv-search-button {
 	vertical-align: top;
 }
 
-
+.form-inline .field-calendar {
+    display: inline-block;
+}

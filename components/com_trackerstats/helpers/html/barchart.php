@@ -42,15 +42,15 @@ abstract class JHtmlBarchart
 
 		// Depends on jQuery UI
 		JHtml::_('bootstrap.framework');
-		JHtml::_('script', 'com_trackerstats/jquery.jqplot.min.js', false, true);
-		JHtml::_('script', 'com_trackerstats/jqplot.barRenderer.min.js', false, true);
-		JHtml::_('script', 'com_trackerstats/jqplot.categoryAxisRenderer.min.js', false, true);
-		JHtml::_('script', 'com_trackerstats/jqplot.pointLabels.min.js', false, true);
-		JHtml::_('script', 'com_trackerstats/barchart.js', false, true);
-		JHtml::_('script', 'com_trackerstats/jquery-ui-1.10.2.custom.min.js', false, true);
-		JHtml::_('script', 'com_trackerstats/jqplot.highlighter.min.js', false, true);
-		JHtml::_('stylesheet', 'com_trackerstats/jquery.jqplot.min.css', [], true);
-		JHtml::_('stylesheet', 'com_trackerstats/jquery-ui-1.10.2.custom.min.css', [], true);
+		JHtml::_('script', 'com_trackerstats/jquery.jqplot.min.js', ['version' => '1.0.7', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+		JHtml::_('script', 'com_trackerstats/jqplot.barRenderer.min.js', ['version' => '1.0.7', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+		JHtml::_('script', 'com_trackerstats/jqplot.categoryAxisRenderer.min.js', ['version' => '1.0.7', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+		JHtml::_('script', 'com_trackerstats/jqplot.pointLabels.min.js', ['version' => '1.0.7', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+		JHtml::_('script', 'com_trackerstats/barchart.js', ['version' => '1.0.7', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+		JHtml::_('script', 'com_trackerstats/jquery-ui-1.10.2.custom.min.js', ['version' => '1.10.2', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+		JHtml::_('script', 'com_trackerstats/jqplot.highlighter.min.js', ['version' => '1.0.7', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+		JHtml::_('stylesheet', 'com_trackerstats/jquery.jqplot.min.css', ['version' => '1.0.7', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+		JHtml::_('stylesheet', 'com_trackerstats/jquery-ui-1.10.2.custom.min.css', ['version' => '1.10.2', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
 
 		$document = JFactory::getDocument();
 
