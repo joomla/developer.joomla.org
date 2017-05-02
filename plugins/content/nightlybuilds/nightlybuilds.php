@@ -103,7 +103,11 @@ class PlgContentNightlyBuilds extends JPlugin
 			$version = JVersion::RELEASE;
 			$pieces  = explode(".", $version);
 
+			// 3.8
 			$minor = $pieces[0] . "." . ($pieces[1] + 1);
+			// 3.9
+			$afterNextMinor = $pieces[0] . "." . ($pieces[1] + 2);
+			// 4.0
 			$major = ($pieces[0] + 1) . ".0";
 
 			// Set the updateserver per branch defaults to the next patch updateserver
@@ -111,6 +115,9 @@ class PlgContentNightlyBuilds extends JPlugin
 			{
 				case $minor :
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_minor_list.xml';
+					break;
+				case $afterNextMinor :
+					$updateserver = 'https://update.joomla.org/core/nightlies/afternext_minor_extension.xml';
 					break;
 				case $major :
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_major_list.xml';
