@@ -105,11 +105,16 @@ class CodeModelIssue extends JModelLegacy
 
 		try
 		{
-			return $db->loadObject();
+			$data = $db->loadObject();
 		}
 		catch (RuntimeException $e)
 		{
 			$this->setError(JText::sprintf('COM_CODE_ERROR_FETCHING_ISSUE', $issueId));
+		}
+
+		if (empty($data))
+		{
+			JError::raiseError(404, JText::_('COM_CODE_ERROR_ISSUE_NOT_FOUND'));
 		}
 	}
 
