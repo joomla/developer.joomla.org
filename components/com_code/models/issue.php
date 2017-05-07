@@ -116,6 +116,8 @@ class CodeModelIssue extends JModelLegacy
 		{
 			JError::raiseError(404, JText::_('COM_CODE_ERROR_ISSUE_NOT_FOUND'));
 		}
+
+		return $data;
 	}
 
 	/**
