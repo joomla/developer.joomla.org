@@ -14,153 +14,156 @@ defined('_JEXEC') or die;
  *
  * @since  4.0
  */
-class CodeRouter extends JComponentRouterBase
+class CodeRouter extends JComponentRouterView
 {
 	/**
-	 * Build the route for the com_code component
+	 * Code Component router constructor
 	 *
-	 * @param   array  &$query  An array of URL arguments
-	 *
-	 * @return  array  The URL arguments to use to assemble the subsequent URL.
-	 *
-	 * @since   4.0
+	 * @param   JApplicationCms  $app   The application object
+	 * @param   JMenu            $menu  The menu object to work with
 	 */
-	public function build(&$query)
+	public function __construct($app = null, $menu = null)
 	{
-		// Initialize variables.
-		$segments = [];
+		$trackers = new JComponentRouterViewconfiguration('trackers');
+		$this->registerView($trackers);
 
-		// We need a menu item.  Either the one specified in the query, or the current active one if none specified
-		if (empty($query['Itemid']))
-		{
-			$menuItem      = $this->menu->getActive();
-			$menuItemGiven = false;
-		}
-		else
-		{
-			$menuItem      = $this->menu->getItem($query['Itemid']);
-			$menuItemGiven = true;
-		}
+		$tracker = new JComponentRouterViewconfiguration('tracker');
+		$tracker->setKey('tracker_id')->setParent($trackers);
+		$this->registerView($tracker);
 
-		// Check again
-		if ($menuItemGiven && isset($menuItem) && $menuItem->component != 'com_code')
-		{
-			$menuItemGiven = false;
-			unset($query['Itemid']);
-		}
+		$this->registerView(
+			(new JComponentRouterViewconfiguration('issue'))->setKey('id')->setParent($tracker)
+		);
 
-		if (!isset($query['view']))
-		{
-			// We need to have a view in the query or it is an invalid URL
-			return $segments;
-		}
+		parent::__construct($app, $menu);
 
-		$view = $query['view'];
-		unset($query['view']);
+		$this->attachRule(new JComponentRouterRulesMenu($this));
 
-		switch ($view)
-		{
-			case 'issue':
-				$segments[] = 'issue-' . $query['issue_id'];
-				unset($query['issue_id']);
+		$this->attachRule(
+			new class($this) implements JComponentRouterRulesInterface
+			{
+				protected $router;
 
-				break;
-
-			case 'tracker':
-				$segments[] = 'tracker-' . $query['tracker_id'];
-				unset($query['tracker_id']);
-
-				break;
-
-			default:
-				break;
-		}
-
-		return $segments;
-	}
-
-	/**
-	 * Parse the segments of a URL.
-	 *
-	 * @param   array &$segments The segments of the URL to parse.
-	 *
-	 * @return  array  The URL attributes to be used by the application.
-	 *
-	 * @since   4.0
-	 */
-	public function parse(&$segments)
-	{
-		// Initialize variables.
-		$vars = [];
-
-		// If no segments exist then we are at the tracker list
-		if (empty($segments))
-		{
-			$vars['view'] = 'trackers';
-
-			return $vars;
-		}
-
-		// Get the item from the segment
-		$segment = array_shift($segments);
-		list ($view, $jcItemId) = explode('-', $segment);
-
-		$db = JFactory::getDbo();
-
-		$vars['view'] = $view;
-
-		// Move forward based on view
-		switch ($view)
-		{
-			case 'tracker':
-				// Search the database for the appropriate tracker.
-				$db->setQuery(
-					$db->getQuery(true)
-						->select('tracker_id')
-						->from('#__code_trackers')
-						->where('jc_tracker_id = ' . (int) $jcItemId)
-					, 0, 1
-				);
-				$trackerId = (int) $db->loadResult();
-
-				// If the tracker isn't found throw a 404.
-				if (!$trackerId)
+				public function __construct(JComponentRouterView $router)
 				{
-					throw new InvalidArgumentException('Tracker not found.', 404);
+					$this->router = $router;
 				}
 
-				// We're on a valid tracker, finish up the processing
-				$vars['tracker_id'] = $jcItemId;
-
-				break;
-
-			case 'issue';
-				// Search the database for the appropriate issue.
-				$db->setQuery(
-					$db->getQuery(true)
-						->select('issue_id')
-						->from('#__code_tracker_issues')
-						->where('jc_issue_id = ' . (int) $jcItemId)
-					, 0, 1
-				);
-				$issueId = (int) $db->loadResult();
-
-				// If the issue isn't found throw a 404.
-				if (!$issueId)
+				public function preprocess(&$query)
 				{
-					throw new InvalidArgumentException('Issue not found.', 404);
 				}
 
-				// We're on a valid issue, finish up the processing
-				$vars['issue_id'] = $jcItemId;
+				public function parse(&$segments, &$vars)
+				{
+					// Get the views and the currently active query vars
+					$views  = $this->router->getViews();
+					$active = $this->router->menu->getActive();
 
-				break;
+					if ($active)
+					{
+						$vars = array_merge($active->query, $vars);
+					}
 
-			default:
-				// Unsupported resource
-				throw new InvalidArgumentException('Resource not found.', 404);
-		}
+					// We don't have a view or its not a view of this component! We stop here
+					if (!isset($vars['view']) || !isset($views[$vars['view']]))
+					{
+						return;
+					}
 
-		return $vars;
+					// Get the item from the segment
+					$segment = array_shift($segments);
+
+					if (strpos($segment, '-') === false)
+					{
+						throw new InvalidArgumentException('Invalid URL', 404);
+					}
+
+					list ($view, $jcItemId) = explode('-', $segment);
+
+					if (!isset($views[$view]))
+					{
+						throw new InvalidArgumentException('View not found', 404);
+					}
+
+					$db = JFactory::getDbo();
+
+					$vars['view'] = $view;
+
+					// Move forward based on view
+					switch ($view)
+					{
+						case 'tracker':
+							// Search the database for the appropriate tracker.
+							$db->setQuery(
+								$db->getQuery(true)
+									->select('tracker_id')
+									->from('#__code_trackers')
+									->where('jc_tracker_id = ' . (int) $jcItemId)
+								,
+								0,
+								1
+							);
+							$trackerId = (int) $db->loadResult();
+
+							$vars['tracker_id'] = $jcItemId;
+
+							break;
+
+						case 'issue';
+							// Search the database for the appropriate issue.
+							$db->setQuery(
+								$db->getQuery(true)
+									->select('issue_id')
+									->from('#__code_tracker_issues')
+									->where('jc_issue_id = ' . (int) $jcItemId)
+								,
+								0,
+								1
+							);
+							$issueId = (int) $db->loadResult();
+
+							$vars['issue_id'] = $jcItemId;
+
+							break;
+					}
+
+					return $vars;
+				}
+
+				public function build(&$query, &$segments)
+				{
+					// Get the menu item belonging to the Itemid that has been found
+					$item = $this->router->menu->getItem($query['Itemid']);
+
+					if (!isset($query['view']))
+					{
+						return;
+					}
+
+					$view = $query['view'];
+					unset($query['view']);
+
+					switch ($view)
+					{
+						case 'issue':
+							$segments[] = 'issue-' . $query['issue_id'];
+							unset($query['issue_id']);
+
+							break;
+
+						case 'tracker':
+							$segments[] = 'tracker-' . $query['tracker_id'];
+							unset($query['tracker_id']);
+
+							break;
+
+						default:
+							break;
+					}
+				}
+			}
+		);
+
+		$this->attachRule(new JComponentRouterRulesNomenu($this));
 	}
 }
