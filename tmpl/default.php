@@ -28,7 +28,7 @@ defined('_JEXEC') or die;
  */
 
 // Require our Chart.js source
-JHtml::_('script', 'mod_joomladata/Chart.js', false, true);
+JHtml::_('script', 'mod_joomladata/Chart.js', ['version' => '2.1.6', 'relative' => true, 'detectDebug' => (bool) JDEBUG]);
 
 // Figure out what type of chart we're building
 $chartType = $params->get('chartType', 'Doughnut');
