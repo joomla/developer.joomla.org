@@ -145,8 +145,23 @@ h5.roadmap {
 
 /*fix for rrssb display*/
 .rrssb-buttons {
-	display: inline-block;
+    display: inline-block;
 }
+
+/*2017 Newsletter*/
+.acyreceive input {
+    float: left;
+    margin-right: 5px;
+}
+.acy label {
+    float: left;
+    margin-right: 10px;
+    padding-top: 5px;
+}  
+.acy input {
+    box-shadow: none;
+    border-radius: 0;
+} 
 /*End 2017 changes*/
 
 .thumbnails .thumbnail,.breadcrumb {
