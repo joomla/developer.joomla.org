@@ -81,17 +81,14 @@ body.site {
     margin-right: 0;
     background: #eee;
 }
-[id="3x"]:before,
-[id="37"]:before,
-[id="38"]:before,
-[id="39"]:before,
-[id="4"]:before,
-#framework:before{
-    display: block; 
-    content: ""; 
+[id="3x"]:target,
+[id="37"]:target,
+[id="38"]:target,
+[id="39"]:target,
+[id="4"]:target,
+#framework:target {
     margin-top: -85px;
-    height: 85px;
-    visibility: hidden; 
+    padding-top: 85px;
 }
 h2.roadmap:before {
     background: #1b63a2;
