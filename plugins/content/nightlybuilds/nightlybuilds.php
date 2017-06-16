@@ -122,7 +122,7 @@ class PlgContentNightlyBuilds extends JPlugin
 					break;
 
 				case $afterNextMinor :
-					$updateserver = 'https://update.joomla.org/core/nightlies/afternext_minor_extension.xml';
+					$updateserver = 'https://update.joomla.org/core/nightlies/afternext_minor_list.xml';
 
 					break;
 
