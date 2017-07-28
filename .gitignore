@@ -35,7 +35,8 @@
 /media/*
 !/media/com_code
 !/media/com_trackerstats
-/modules
+/modules/*
+!/modules/mod_joomladata
 /nightlies
 /plugins/*
 !/plugins/finder
