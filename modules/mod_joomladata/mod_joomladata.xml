@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.4" client="site" method="upgrade">
+	<name>mod_joomladata</name>
+	<creationDate>2015-11-05</creationDate>
+	<author>Joomla!</author>
+	<copyright>Copyright (C) 2015 Open Source Matters. All rights reserved.</copyright>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>https://www.joomla.org</authorUrl>
+	<version>2.0.0</version>
+	<license>GNU/GPL Version 2 or later</license>
+	<description>MOD_JOOMLADATA_XML_DESCRIPTION</description>
+	<files>
+		<folder>language</folder>
+		<folder>tmpl</folder>
+		<filename module="mod_joomladata">mod_joomladata.php</filename>
+        <filename>helper.php</filename>
+		<filename>mod_joomladata.xml</filename>
+	</files>
+	<media destination="mod_joomladata" folder="media">
+		<folder>js</folder>
+	</media>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="serverUrl" type="url" filter="url" default="https://developer.joomla.org/stats" validate="url" label="MOD_JOOMLADATA_FIELDSET_BASIC_SERVER_URL_LABEL" description="MOD_JOOMLADATA_FIELDSET_BASIC_SERVER_URL_DESCRIPTION" />
+				<field name="dataSource" type="list" default="php_version" validate="options" label="MOD_JOOMLADATA_FIELDSET_BASIC_DATA_SOURCE_LABEL" description="MOD_JOOMLADATA_FIELDSET_BASIC_DATA_SOURCE_DESCRIPTION">
+					<option value="cms_version">MOD_JOOMLADATA_FIELDSET_BASIC_DATA_SOURCE_OPTION_CMS_VERSION</option>
+					<option value="db_type">MOD_JOOMLADATA_FIELDSET_BASIC_DATA_SOURCE_OPTION_DB_TYPE</option>
+					<option value="db_version">MOD_JOOMLADATA_FIELDSET_BASIC_DATA_SOURCE_OPTION_DB_VERSION</option>
+					<option value="php_version">MOD_JOOMLADATA_FIELDSET_BASIC_DATA_SOURCE_OPTION_PHP_VERSION</option>
+					<option value="server_os">MOD_JOOMLADATA_FIELDSET_BASIC_DATA_SOURCE_OPTION_SERVER_OS</option>
+				</field>
+				<field name="chartType" type="list" validate="options" default="Doughnut" label="MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_LABEL" description="MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_DESCRIPTION">
+					<!-- <option value="Bar">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_BAR</option> -->
+					<option value="Doughnut">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_DOUGHNUT</option>
+					<!-- <option value="Line">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_LINE</option> -->
+					<!-- <option value="Pie">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_PIE</option> -->
+					<!-- <option value="PolarArea">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_POLARAREA</option> -->
+					<!-- <option value="Radar">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_RADAR</option> -->
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
