@@ -9,17 +9,21 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Uri\Uri;
+
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));
 
 // For rendering success and failure messages on ajax submmission
-JHtml::_('behavior.core');
+HTMLHelper::_('behavior.core');
 
-JText::script('COM_CODE_TRACKERS_SAVE_SUCCESSFUL');
-JText::script('COM_CODE_TRACKERS_SAVE_ERROR');
+Text::script('COM_CODE_TRACKERS_SAVE_SUCCESSFUL');
+Text::script('COM_CODE_TRACKERS_SAVE_ERROR');
 ?>
 
-<script type="text/javascript" src="<?php echo JUri::root() . '/media/editors/tinymce/'; ?>tinymce.min.js"></script>
+<script type="text/javascript" src="<?php echo Uri::root() . '/media/editors/tinymce/'; ?>tinymce.min.js"></script>
 <script type="text/javascript">
 tinymce.init({
     selector: "h3.editable",
@@ -42,7 +46,7 @@ tinymce.init({
 function saveData()
 {
 	jQuery(".tracker").each(function() {
-		jQuery.ajax({ 
+		jQuery.ajax({
 			type:"POST",
 			url:'index.php?option=com_code&task=trackers.save&format=json',
 			data: {
@@ -61,7 +65,7 @@ function saveData()
 					return false;
 				}
 
-				// @todo We should return some more information from the controller about what went wrong 
+				// @todo We should return some more information from the controller about what went wrong
 				Joomla.renderMessages({
 					"danger": [Joomla.JText._('COM_CODE_TRACKERS_SAVE_ERROR')]
 				});

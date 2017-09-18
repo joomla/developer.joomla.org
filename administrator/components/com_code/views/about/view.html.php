@@ -9,10 +9,13 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
  * View to show the about screen.
  */
-class CodeViewAbout extends JViewLegacy
+class CodeViewAbout extends HtmlView
 {
 	/**
 	 * The necessary HTML to display the sidebar
@@ -47,12 +50,12 @@ class CodeViewAbout extends JViewLegacy
 	{
 		$canDo = CodeHelper::getActions('com_code');
 
-		JToolBarHelper::title(JText::_('COM_CODE_ABOUT_TITLE'), 'code');
+		JToolbarHelper::title(Text::_('COM_CODE_ABOUT_TITLE'), 'code');
 
 		if ($canDo->get('core.admin'))
 		{
-			JToolBarHelper::divider();
-			JToolBarHelper::preferences('com_code');
+			JToolbarHelper::divider();
+			JToolbarHelper::preferences('com_code');
 		}
 	}
 }

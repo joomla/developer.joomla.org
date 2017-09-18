@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Table\Table;
+
 /**
  * Code component base table object.
  */
-class CodeTable extends JTable
+class CodeTable extends Table
 {
 	/**
 	 * Column name for the legacy lookup

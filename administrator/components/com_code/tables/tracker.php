@@ -9,7 +9,7 @@
 
 defined('_JEXEC') or die;
 
-require_once __DIR__ . '/table.php';
+JLoader::register(CodeTable::class, __DIR__ . '/table.php');
 
 /**
  * Code tracker table object.

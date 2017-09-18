@@ -9,16 +9,21 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Filter\InputFilter;
+use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Response\JsonResponse;
+
 /**
  * Trackers Controller for Joomla Code
  */
-class CodeControllerTrackers extends JControllerLegacy
+class CodeControllerTrackers extends BaseController
 {
 	public function save()
 	{
 		$model     = $this->getModel('Trackers');
 		$inputData = $this->input->post->get('tracker', array(), 'array');
-		$filter    = JFilterInput::getInstance();
+		$filter    = InputFilter::getInstance();
 
 		$data = array(
 			'tracker_id'    => $filter->clean($inputData['id'], 'int'),
@@ -36,7 +41,7 @@ class CodeControllerTrackers extends JControllerLegacy
 			$result       = false;
 
 			// Enqueue the message for JResponseJson to pick up on if asked.
-			JFactory::getApplication()->enqueueMessage($e->getMessage());
+			Factory::getApplication()->enqueueMessage($e->getMessage());
 		}
 
 		$return = array(
@@ -44,6 +49,6 @@ class CodeControllerTrackers extends JControllerLegacy
 			'data'   => $data
 		);
 
-		echo new JResponseJson($return, null, false, $this->input->get('ignoreMessages', true, 'bool'));
+		echo new JsonResponse($return, null, false, $this->input->get('ignoreMessages', true, 'bool'));
 	}
 }

@@ -9,14 +9,17 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
+
 // Access check.
-if (!JFactory::getUser()->authorise('core.manage', 'com_code'))
+if (!Factory::getUser()->authorise('core.manage', 'com_code'))
 {
 	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
 require_once JPATH_COMPONENT . '/helpers/code.php';
 
-$controller = JControllerLegacy::getInstance('Code');
-$controller->execute(JFactory::getApplication()->input->get('task'));
+$controller = BaseController::getInstance('Code');
+$controller->execute(Factory::getApplication()->input->get('task'));
 $controller->redirect();

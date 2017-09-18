@@ -9,35 +9,38 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 /**
  * Trackers Model for Joomla Code
  */
-class CodeModelTrackers extends JModelLegacy
+class CodeModelTrackers extends BaseDatabaseModel
 {
 	public function getItems()
 	{
 		// Initialize variables.
-		$items = array();
+		$items = [];
+		$db    = $this->getDbo();
 
 		// Get the list of active branches.
-		$this->_db->setQuery(
-			'SELECT a.*' .
-			' FROM #__code_trackers AS a' .
-//			' WHERE a.published = 1' .
-			' ORDER BY a.title ASC'
-		);
-		$items = $this->_db->loadObjectList();
-
-		if ($this->_db->getErrorNum())
+		try
+		{
+			return $db->setQuery(
+				$db->getQuery(true)
+					->select('a.*')
+					->from('#__code_trackers', 'a')
+					->order('a.title ASC')
+			)->loadObjectList();
+		}
+		catch (JDatabaseExceptionExecuting $e)
 		{
 			JError::raiseError(500, 'Unable to access resource.');
 		}
-
-		return $items;
 	}
 
 	public function save($data)
 	{
+		/** @var CodeTableTracker $table */
 		$table = $this->getTable('Tracker', 'CodeTable');
 
 		return $table->save($data);

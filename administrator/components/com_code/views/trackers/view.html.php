@@ -9,10 +9,13 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
  * View to show the about screen.
  */
-class CodeViewTrackers extends JViewLegacy
+class CodeViewTrackers extends HtmlView
 {
 	/**
 	 * The necessary HTML to display the sidebar
@@ -51,12 +54,12 @@ class CodeViewTrackers extends JViewLegacy
 	{
 		$canDo = CodeHelper::getActions('com_code');
 
-		JToolBarHelper::title(JText::_('COM_CODE_TRACKERS_TITLE'), 'trackers');
+		JToolbarHelper::title(Text::_('COM_CODE_TRACKERS_TITLE'), 'trackers');
 
 		if ($canDo->get('core.admin'))
 		{
-			JToolBarHelper::divider();
-			JToolBarHelper::preferences('com_code');
+			JToolbarHelper::divider();
+			JToolbarHelper::preferences('com_code');
 		}
 	}
 }

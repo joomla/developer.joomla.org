@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Controller\BaseController;
+
 /**
  * Code component base controller.
  */
-class CodeController extends JControllerLegacy
+class CodeController extends BaseController
 {
 	/**
 	 * The default view.

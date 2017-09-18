@@ -9,10 +9,13 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Helper\ContentHelper;
+use Joomla\CMS\Language\Text;
+
 /**
  * Code component helper.
  */
-class CodeHelper extends JHelperContent
+class CodeHelper extends ContentHelper
 {
 	/**
 	 * Configure the Linkbar.
@@ -24,13 +27,13 @@ class CodeHelper extends JHelperContent
 	public static function addSubmenu($vName)
 	{
 		JHtmlSidebar::addEntry(
-			JText::_('COM_CODE_ABOUT'),
+			Text::_('COM_CODE_ABOUT'),
 			'index.php?option=com_code&view=about',
 			$vName == 'about'
 		);
 
 		JHtmlSidebar::addEntry(
-			JText::_('COM_CODE_TRACKERS'),
+			Text::_('COM_CODE_TRACKERS'),
 			'index.php?option=com_code&view=trackers',
 			$vName == 'trackers'
 		);
