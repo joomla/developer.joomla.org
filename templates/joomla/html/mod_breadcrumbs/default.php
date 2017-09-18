@@ -9,13 +9,16 @@
 
 defined('_JEXEC') or die;
 
-JHtml::_('bootstrap.tooltip');
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
+HTMLHelper::_('bootstrap.tooltip');
 ?>
 
 <ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb<?php echo $moduleclass_sfx; ?>">
 	<?php if ($params->get('showHere', 1)) : ?>
 		<li class="active">
-			<?php echo JText::_('MOD_BREADCRUMBS_HERE'); ?>&#160;
+			<?php echo Text::_('MOD_BREADCRUMBS_HERE'); ?>&#160;
 		</li>
 	<?php else : ?>
 		<li class="active">

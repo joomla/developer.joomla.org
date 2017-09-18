@@ -26,6 +26,6 @@ $route = "index.php?option=com_jmarkdown&view=Contents&slug=";
 				<?php endif;?>
 			<?php endforeach;?>
 		<?php endif;?>
-		</ul>
+	</ul>
 	<?php endforeach;?>
 <?php endif;?>

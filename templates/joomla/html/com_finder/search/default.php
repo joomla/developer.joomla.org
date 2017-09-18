@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.core');
-JHtml::_('formbehavior.chosen', 'select');
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-JHtml::_('stylesheet', 'com_finder/finder.css', ['version' => 'auto', 'relative' => true]);
+use Joomla\CMS\HTML\HTMLHelper;
+
+HTMLHelper::_('behavior.core');
+HTMLHelper::_('formbehavior.chosen', 'select');
+HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+HTMLHelper::_('stylesheet', 'com_finder/finder.css', ['version' => 'auto', 'relative' => true]);
 ?>
 
 <div class="finder<?php echo $this->pageclass_sfx; ?>">
