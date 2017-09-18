@@ -9,6 +9,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
+
 JLoader::register('FinderIndexerAdapter', JPATH_ADMINISTRATOR . '/components/com_finder/helpers/indexer/adapter.php');
 
 /**
@@ -153,7 +155,7 @@ class PlgFinderTracker_Issues extends FinderIndexerAdapter
 	protected function index(FinderIndexerResult $item)
 	{
 		// Check if the extension is enabled
-		if (JComponentHelper::isEnabled($this->extension) == false)
+		if (ComponentHelper::isEnabled($this->extension) == false)
 		{
 			return;
 		}
