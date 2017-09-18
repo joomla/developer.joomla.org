@@ -8,19 +8,21 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
 /**
  * Module variables
  * -----------------
- * @var   object                     $module    A module object
- * @var   array                      $attribs   An array of attributes for the module (probably from the XML)
- * @var   array                      $chrome    The loaded module chrome files
- * @var   JApplicationCms            $app       The active application singleton
- * @var   string                     $scope     The application scope before the module was included
- * @var   \Joomla\Registry\Registry  $params    Module parameters
- * @var   string                     $template  The active template
- * @var   string                     $path      The path to this module file
- * @var   JLanguage                  $lang      The active JLanguage singleton
- * @var   string                     $content   Module output content
+ * @var   object                                  $module    A module object
+ * @var   array                                   $attribs   An array of attributes for the module (probably from the XML)
+ * @var   array                                   $chrome    The loaded module chrome files
+ * @var   \Joomla\CMS\Application\CMSApplication  $app       The active application singleton
+ * @var   string                                  $scope     The application scope before the module was included
+ * @var   \Joomla\Registry\Registry               $params    Module parameters
+ * @var   string                                  $template  The active template
+ * @var   string                                  $path      The path to this module file
+ * @var   \Joomla\CMS\Language\Language           $lang      The active JLanguage singleton
+ * @var   string                                  $content   Module output content
  *
  * Additional variables
  * ---------------------
@@ -28,7 +30,7 @@ defined('_JEXEC') or die;
  */
 
 // Require our Chart.js source
-JHtml::_('script', 'mod_joomladata/Chart.js', ['version' => '2.1.6', 'relative' => true, 'detectDebug' => (bool) JDEBUG]);
+HTMLHelper::_('script', 'mod_joomladata/Chart.js', ['version' => '2.1.6', 'relative' => true, 'detectDebug' => (bool) JDEBUG]);
 
 // Figure out what type of chart we're building
 $chartType = $params->get('chartType', 'Doughnut');

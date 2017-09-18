@@ -8,19 +8,23 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Http\HttpFactory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Helper\ModuleHelper;
+
 /**
  * Module variables
  * -----------------
- * @var   object                     $module    A module object
- * @var   array                      $attribs   An array of attributes for the module (probably from the XML)
- * @var   array                      $chrome    The loaded module chrome files
- * @var   JApplicationCms            $app       The active application singleton
- * @var   string                     $scope     The application scope before the module was included
- * @var   \Joomla\Registry\Registry  $params    Module parameters
- * @var   string                     $template  The active template
- * @var   string                     $path      The path to this module file
- * @var   JLanguage                  $lang      The active JLanguage singleton
- * @var   string                     $content   Module output content
+ * @var   object                                  $module    A module object
+ * @var   array                                   $attribs   An array of attributes for the module (probably from the XML)
+ * @var   array                                   $chrome    The loaded module chrome files
+ * @var   \Joomla\CMS\Application\CMSApplication  $app       The active application singleton
+ * @var   string                                  $scope     The application scope before the module was included
+ * @var   \Joomla\Registry\Registry               $params    Module parameters
+ * @var   string                                  $template  The active template
+ * @var   string                                  $path      The path to this module file
+ * @var   \Joomla\CMS\Language\Language           $lang      The active JLanguage singleton
+ * @var   string                                  $content   Module output content
  */
 
 // Include the helper
@@ -35,7 +39,7 @@ $sourceUrl = $serverUrl . '/' . $dataSource;
 // Request our data
 try
 {
-	$response = JHttpFactory::getHttp()->get($sourceUrl);
+	$response = HttpFactory::getHttp()->get($sourceUrl);
 }
 catch (Exception $e)
 {
@@ -64,7 +68,7 @@ switch ($dataSource)
 
 		foreach ($rawData['data']['server_os'] as $os => $count)
 		{
-			$label       = ($os == 'unknown') ? JText::_('MOD_JOOMLADATA_LABEL_UNKNOWN_SERVER') : $os;
+			$label       = ($os == 'unknown') ? Text::_('MOD_JOOMLADATA_LABEL_UNKNOWN_SERVER') : $os;
 			$chartData[] = ['name' => $label, 'count' => $count];
 		}
 
@@ -101,7 +105,7 @@ switch ($dataSource)
 		foreach ($rawData['data'][$dataSource] as $group => $value)
 		{
 			$key         = 'MOD_JOOMLADATA_LABEL_' . strtoupper($group);
-			$label       = $lang->hasKey($key) ? JText::_($key) : $group;
+			$label       = $lang->hasKey($key) ? Text::_($key) : $group;
 			$chartData[] = ['name' => $label, 'count' => $value];
 		}
 
@@ -109,4 +113,4 @@ switch ($dataSource)
 }
 
 // Build the output
-require JModuleHelper::getLayoutPath('mod_joomladata', $params->get('layout', 'default'));
+require ModuleHelper::getLayoutPath('mod_joomladata', $params->get('layout', 'default'));
