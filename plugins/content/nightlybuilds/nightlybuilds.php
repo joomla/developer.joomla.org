@@ -8,12 +8,18 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Version;
+
 /**
  * Plugin for processing the nightly build package data
  *
  * @since  1.0
  */
-class PlgContentNightlyBuilds extends JPlugin
+class PlgContentNightlyBuilds extends CMSPlugin
 {
 	/**
 	 * The placeholder marker
@@ -90,20 +96,19 @@ class PlgContentNightlyBuilds extends JPlugin
 		$buildTime = file_exists("$nightlyDir/time.txt") ? trim(file_get_contents("$nightlyDir/time.txt")) : false;
 
 		// Display the build time if available
-		$html = $buildTime ? '<div class="alert alert-info">' . JText::sprintf('PLG_CONTENT_NIGHTLYBUILDS_BUILD_TIME', JHtml::_('date', $buildTime, 'l, d F Y H:i:s T')) . '</div>' : '';
+		$html = $buildTime ? '<div class="alert alert-info">' . Text::sprintf('PLG_CONTENT_NIGHTLYBUILDS_BUILD_TIME', HTMLHelper::_('date', $buildTime, 'l, d F Y H:i:s T')) . '</div>' : '';
 
 		// Start sliders for the releases
-		$html .= JHtml::_('bootstrap.startAccordion', 'nightlyBuilds');
+		$html .= HTMLHelper::_('bootstrap.startAccordion', 'nightlyBuilds');
+
+		$currentVersion = Version::MAJOR_VERSION . '.' . Version::MINOR_VERSION;
+		$minor          = Version::MAJOR_VERSION . '.' . (Version::MINOR_VERSION + 1);
+		$major          = (Version::MAJOR_VERSION + 1) . '.0';
 
 		foreach ($packages as $branch => $files)
 		{
 			$commitSha    = file_exists("$nightlyDir/$branch.txt") ? trim(file_get_contents("$nightlyDir/$branch.txt")) : false;
 			$linkedBranch = $commitSha;
-
-			$version = JVersion::RELEASE;
-			$pieces  = explode(".", $version);
-			$minor   = $pieces[0] . "." . ($pieces[1] + 1);
-			$major   = ($pieces[0] + 1) . ".0";
 
 			// Set the updateserver per branch defaults to the next patch updateserver
 			switch ($branch)
@@ -127,12 +132,12 @@ class PlgContentNightlyBuilds extends JPlugin
 			/*
 			 * Figure out our linked branch if the commit SHA doesn't exist.
 			 *
-			 * If $branch == JVersion::RELEASE then we're displaying "staging"
-			 * If $branch != JVersion::RELEASE then we're displaying "$branch-dev"
+			 * If $branch == $currentVersion then we're displaying "staging"
+			 * If $branch != $currentVersion then we're displaying "$branch-dev"
 			 */
 			if (!$linkedBranch)
 			{
-				if ($branch == JVersion::RELEASE)
+				if ($branch == $currentVersion)
 				{
 					$linkedBranch = 'staging';
 				}
@@ -142,14 +147,14 @@ class PlgContentNightlyBuilds extends JPlugin
 				}
 			}
 
-			$html .= JHtml::_('bootstrap.addSlide', 'nightlyBuilds', "Joomla! $branch", 'joomla-' . str_replace('.', '', $branch));
+			$html .= HTMLHelper::_('bootstrap.addSlide', 'nightlyBuilds', "Joomla! $branch", 'joomla-' . str_replace('.', '', $branch));
 
 			$html .= sprintf(
 				'<div class="alert alert-info">%s</div>',
-				JText::sprintf(
+				Text::sprintf(
 					'PLG_CONTENT_NIGHTLYBUILDS_BUILD_BRANCH',
-					$commitSha ? JText::_('PLG_CONTENT_NIGHTLYBUILDS_REF_COMMIT') : JText::_('PLG_CONTENT_NIGHTLYBUILDS_REF_BRANCH'),
-					JHtml::_('link', "https://github.com/joomla/joomla-cms/tree/$linkedBranch", $linkedBranch, ['class' => 'alert-link'])
+					$commitSha ? Text::_('PLG_CONTENT_NIGHTLYBUILDS_REF_COMMIT') : Text::_('PLG_CONTENT_NIGHTLYBUILDS_REF_BRANCH'),
+					HTMLHelper::_('link', "https://github.com/joomla/joomla-cms/tree/$linkedBranch", $linkedBranch, ['class' => 'alert-link'])
 				)
 			);
 
@@ -157,7 +162,7 @@ class PlgContentNightlyBuilds extends JPlugin
 
 			foreach ($files as $file)
 			{
-				$html .= '<li><a href="' . JUri::root() . 'nightlies/' . $file . '">' . $file . '</a></li>';
+				$html .= '<li><a href="' . Uri::root() . 'nightlies/' . $file . '">' . $file . '</a></li>';
 			}
 
 			$html .= '</ul>';
@@ -165,16 +170,16 @@ class PlgContentNightlyBuilds extends JPlugin
 			// Display the Updateserver
 			$html .= sprintf(
 				'<p>%s</p>',
-				JText::sprintf(
+				Text::sprintf(
 					'PLG_CONTENT_NIGHTLYBUILDS_UDATESERVER',
-					JHtml::_('link', $updateserver, $updateserver)
+					HTMLHelper::_('link', $updateserver, $updateserver)
 				)
 			);
 
-			$html .= JHtml::_('bootstrap.endSlide');
+			$html .= HTMLHelper::_('bootstrap.endSlide');
 		}
 
-		$html .= JHtml::_('bootstrap.endAccordion');
+		$html .= HTMLHelper::_('bootstrap.endAccordion');
 
 		// Plug our markup into the article replacing the marker
 		$article->text = str_replace($this->marker, $html, $article->text);
