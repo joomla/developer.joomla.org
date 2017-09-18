@@ -9,9 +9,12 @@
 
 defined('_JEXEC') or die;
 
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
 
-JHtml::_('barchart.barchart', 'barchart', 'barchart', true);
+HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+
+HTMLHelper::_('barchart.barchart', 'barchart', 'barchart', true);
 ?>
 <div class="trackerstats-wiki<?php echo $this->pageclass_sfx;?>">
 	<?php if ($this->params->def('show_page_heading', 1)) : ?>
@@ -20,5 +23,5 @@ JHtml::_('barchart.barchart', 'barchart', 'barchart', true);
 		</div>
 	<?php endif; ?>
 
-	<div id="barchart" style="width:700px; height:600px;" data-href="<?php echo JRoute::_('index.php?option=com_trackerstats&task=wiki.display&format=json'); ?>"></div>
+	<div id="barchart" style="width:700px; height:600px;" data-href="<?php echo Route::_('index.php?option=com_trackerstats&task=wiki.display&format=json'); ?>"></div>
 </div>

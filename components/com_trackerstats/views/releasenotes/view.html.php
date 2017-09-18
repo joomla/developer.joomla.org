@@ -9,17 +9,19 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+
 // Load the com_code route helper
 JLoader::register('CodeHelperRoute', JPATH_ROOT . '/components/com_code/helpers/route.php');
 
 /**
  * HTML View class for the release notes menu item.
  *
- * @package     Joomla.BugSquad
- * @subpackage  com_trackerstats
- * @since       2.5
+ * @since  2.5
  */
-class TrackerstatsViewReleasenotes extends JViewLegacy
+class TrackerstatsViewReleasenotes extends HtmlView
 {
 	protected $state;
 	protected $items;
@@ -31,12 +33,10 @@ class TrackerstatsViewReleasenotes extends JViewLegacy
 	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
 	 *
 	 * @return  mixed  A string if successful, otherwise a Error object.
-	 *
-	 * @see     JViewLegacy::loadTemplate()
 	 */
 	public function display($tpl = null)
 	{
-		$app    = JFactory::getApplication();
+		$app    = Factory::getApplication();
 		$params = $app->getParams();
 
 		// Get some data from the models
@@ -70,7 +70,7 @@ class TrackerstatsViewReleasenotes extends JViewLegacy
 	 */
 	protected function _prepareDocument()
 	{
-		$app     = JFactory::getApplication();
+		$app     = Factory::getApplication();
 		$menu    = $app->getMenu()->getActive();
 
 		if ($menu)
@@ -79,7 +79,7 @@ class TrackerstatsViewReleasenotes extends JViewLegacy
 		}
 		else
 		{
-			$this->params->def('page_heading', JText::_('COM_TRACKERSTATS_DASHBOARD_PAGE_TITLE'));
+			$this->params->def('page_heading', Text::_('COM_TRACKERSTATS_DASHBOARD_PAGE_TITLE'));
 		}
 
 		$title = $this->params->get('page_title', '');
@@ -90,11 +90,11 @@ class TrackerstatsViewReleasenotes extends JViewLegacy
 		}
 		elseif ($app->get('sitename_pagetitles', 0))
 		{
-			$title = JText::sprintf('JPAGETITLE', $app->get('sitename'), $title);
+			$title = Text::sprintf('JPAGETITLE', $app->get('sitename'), $title);
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 2)
 		{
-			$title = JText::sprintf('JPAGETITLE', $title, $app->get('sitename'));
+			$title = Text::sprintf('JPAGETITLE', $title, $app->get('sitename'));
 		}
 
 		$this->document->setTitle($title);

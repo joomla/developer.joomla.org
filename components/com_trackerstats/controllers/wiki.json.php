@@ -9,10 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Http\HttpFactory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Controller\BaseController;
+
 /**
  * JSON controller for Trackerstats -- Returns data array for rendering wiki activity bar charts
  */
-class TrackerstatsControllerWiki extends JControllerLegacy
+class TrackerstatsControllerWiki extends BaseController
 {
 	/**
 	 * Method to display a view.
@@ -24,15 +29,15 @@ class TrackerstatsControllerWiki extends JControllerLegacy
 	 */
 	public function display($cachable = false, $urlparams = [])
 	{
-		JFactory::getApplication()->mimeType = 'application/json';
+		Factory::getApplication()->mimeType = 'application/json';
 
 		$label = (object) [
-			'label' => JText::_('COM_TRACKERSTATS_WIKI_LABEL_EDITS')
+			'label' => Text::_('COM_TRACKERSTATS_WIKI_LABEL_EDITS')
 		];
 
 		try
 		{
-			$response = JHttpFactory::getHttp()->get(
+			$response = HttpFactory::getHttp()->get(
 				'https://docs.joomla.org/api.php?action=query&list=allusers&format=json&auexcludegroup=bot&aulimit=100&auprop=editcount&auactiveusers=',
 				['Content-type: application/json']
 			);
@@ -40,7 +45,7 @@ class TrackerstatsControllerWiki extends JControllerLegacy
 		catch (Exception $e)
 		{
 			// Error handling?
-			echo json_encode([[[]], [], [$label], JText::_('COM_TRACKERSTATS_WIKI_LABEL_EDITS_BY_CONTRIBUTOR_IN_PAST_30_DAYS')]);
+			echo json_encode([[[]], [], [$label], Text::_('COM_TRACKERSTATS_WIKI_LABEL_EDITS_BY_CONTRIBUTOR_IN_PAST_30_DAYS')]);
 
 			return $this;
 		}
@@ -84,12 +89,12 @@ class TrackerstatsControllerWiki extends JControllerLegacy
 			if ($v > 0 && $i++ < $maxCount)
 			{
 				$edits[]  = $v;
-				$people[] = JText::sprintf('COM_TRACKERSTATS_WIKI_CHART_PERSON_LABEL', $k, $totalEditsArray[$k]);
+				$people[] = Text::sprintf('COM_TRACKERSTATS_WIKI_CHART_PERSON_LABEL', $k, $totalEditsArray[$k]);
 			}
 		}
 
 		// Send the response.
-		echo json_encode([[$edits], $people, [$label], JText::_('COM_TRACKERSTATS_WIKI_LABEL_EDITS_BY_CONTRIBUTOR_IN_PAST_30_DAYS')]);
+		echo json_encode([[$edits], $people, [$label], Text::_('COM_TRACKERSTATS_WIKI_LABEL_EDITS_BY_CONTRIBUTOR_IN_PAST_30_DAYS')]);
 
 		return $this;
 	}

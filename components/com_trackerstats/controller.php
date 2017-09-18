@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Controller\BaseController;
+
 /**
  * Trackerstats Component Controller
  */
-class TrackerstatsController extends JControllerLegacy
+class TrackerstatsController extends BaseController
 {
 	/**
 	 * Method to display a view.

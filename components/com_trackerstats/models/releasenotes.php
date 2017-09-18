@@ -9,13 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
 
 /**
  * Gets the data for the release notes menu item.
  */
-class TrackerstatsModelReleasenotes extends JModelList
+class TrackerstatsModelReleasenotes extends ListModel
 {
 	/**
 	 * Method to get a JDatabaseQuery object for retrieving the data set from a database.
@@ -88,7 +90,7 @@ class TrackerstatsModelReleasenotes extends JModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		// Initialise variables.
-		$app    = JFactory::getApplication('site');
+		$app    = Factory::getApplication('site');
 		$jinput = $app->input;
 
 		$params     = $app->getParams();
