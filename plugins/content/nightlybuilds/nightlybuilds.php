@@ -102,27 +102,14 @@ class PlgContentNightlyBuilds extends JPlugin
 
 			$version = JVersion::RELEASE;
 			$pieces  = explode(".", $version);
-
-			/*
-			 * Temporarily adjust the logic for the next release branches.
-			 * Because we are currently working on 3.8, 3.9, and 4.0, we have more than one upcoming minor
-			 * release so we need to support nightly builds for it. $afterNextMinor can be removed when we
-			 * are back to our normal workflow.
-			 */
-			$minor          = $pieces[0] . "." . ($pieces[1] + 1);
-			$afterNextMinor = $pieces[0] . "." . ($pieces[1] + 2);
-			$major          = ($pieces[0] + 1) . ".0";
+			$minor   = $pieces[0] . "." . ($pieces[1] + 1);
+			$major   = ($pieces[0] + 1) . ".0";
 
 			// Set the updateserver per branch defaults to the next patch updateserver
 			switch ($branch)
 			{
 				case $minor :
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_minor_list.xml';
-
-					break;
-
-				case $afterNextMinor :
-					$updateserver = 'https://update.joomla.org/core/nightlies/afternext_minor_list.xml';
 
 					break;
 
