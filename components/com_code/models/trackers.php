@@ -9,10 +9,12 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 /**
  * Trackers Model for Joomla Code
  */
-class CodeModelTrackers extends JModelLegacy
+class CodeModelTrackers extends BaseDatabaseModel
 {
 	/**
 	 * Get the list of trackers

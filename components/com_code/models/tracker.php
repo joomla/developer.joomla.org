@@ -9,12 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ItemModel;
+use Joomla\CMS\Pagination\Pagination;
 use Joomla\Registry\Registry;
 
 /**
  * Tracker Model for Joomla Code
  */
-class CodeModelTracker extends JModelItem
+class CodeModelTracker extends ItemModel
 {
 	/**
 	 * Model context string.
@@ -130,7 +133,7 @@ class CodeModelTracker extends JModelItem
 		if ($this->issues === null)
 		{
 			/** @var CodeModelIssues $model */
-			$model = JModelLegacy::getInstance('Issues', 'CodeModel', ['ignore_request' => true]);
+			$model = static::getInstance('Issues', 'CodeModel', ['ignore_request' => true]);
 
 			$model->setState('options', $this->getState('options'));
 			$model->setState('filter.tracker_id', $pk);
@@ -172,9 +175,9 @@ class CodeModelTracker extends JModelItem
 	}
 
 	/**
-	 * Method to get a JPagination object for the data set.
+	 * Method to get a Pagination object for the data set.
 	 *
-	 * @return  JPagination
+	 * @return  Pagination
 	 */
 	public function getPagination()
 	{
@@ -190,7 +193,7 @@ class CodeModelTracker extends JModelItem
 	 */
 	protected function populateState()
 	{
-		$app = JFactory::getApplication('site');
+		$app = Factory::getApplication('site');
 
 		// Set the JoomlaCode tracker ID from the request.
 		$pk = $app->input->getInt('tracker_id');

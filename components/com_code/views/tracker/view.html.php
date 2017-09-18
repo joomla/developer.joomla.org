@@ -9,10 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Router\Route;
+
 /**
  * The HTML Joomla Code tracker view.
  */
-class CodeViewTracker extends JViewLegacy
+class CodeViewTracker extends HtmlView
 {
 	/**
 	 * Execute and display a template script.
@@ -31,17 +36,17 @@ class CodeViewTracker extends JViewLegacy
 		$this->item   = $this->get('Item');
 		$this->items  = $this->get('Items');
 		$this->page   = $this->get('Pagination');
-		$this->user   = JFactory::getUser();
-		$this->params = JFactory::getApplication()->getParams('com_code');
+		$this->user   = Factory::getUser();
+		$this->params = Factory::getApplication()->getParams('com_code');
 
 		// Priorities map, from integer to string
 		$this->priorities = CodeHelperSelect::getPrioritiesRaw();
 
 		// URL to submit the form to
-		$id     = JFactory::getApplication()->input->getUint('Itemid', 0);
+		$id     = Factory::getApplication()->input->getUint('Itemid', 0);
 		$itemid = $id ? '&Itemid=' . (int) $id : '';
 
-		$this->formURL = JRoute::_(
+		$this->formURL = Route::_(
 			'index.php?option=com_code&view=tracker&tracker_id=' . $this->item->jc_tracker_id . $itemid
 		);
 
@@ -72,7 +77,7 @@ class CodeViewTracker extends JViewLegacy
 	 */
 	protected function prepareDocument()
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		// Because the application sets a default page title, we need to get it from the menu item itself
 		$menu = $app->getMenu()->getActive();
@@ -95,7 +100,7 @@ class CodeViewTracker extends JViewLegacy
 		{
 			$title = $this->item->title;
 
-			$app->getPathway()->addItem($this->item->title, JRoute::_('index.php?option=com_code&view=tracker&tracker_id=' . $this->item->jc_tracker_id));
+			$app->getPathway()->addItem($this->item->title, Route::_('index.php?option=com_code&view=tracker&tracker_id=' . $this->item->jc_tracker_id));
 		}
 
 		// Check for empty title and add site name if param is set
@@ -105,11 +110,11 @@ class CodeViewTracker extends JViewLegacy
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 1)
 		{
-			$title = JText::sprintf('JPAGETITLE', $app->get('sitename'), $title);
+			$title = Text::sprintf('JPAGETITLE', $app->get('sitename'), $title);
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 2)
 		{
-			$title = JText::sprintf('JPAGETITLE', $title, $app->get('sitename'));
+			$title = Text::sprintf('JPAGETITLE', $title, $app->get('sitename'));
 		}
 
 		if (empty($title))

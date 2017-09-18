@@ -9,10 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Router\Route;
+
 /**
  * The HTML Joomla Code issue view.
  */
-class CodeViewIssue extends JViewLegacy
+class CodeViewIssue extends HtmlView
 {
 	/**
 	 * Execute and display a template script.
@@ -32,8 +37,8 @@ class CodeViewIssue extends JViewLegacy
 		$this->commits  = $model->getCommits();
 		$this->comments = $model->getComments();
 		$this->tracker  = $model->getTracker();
-		$this->user     = JFactory::getUser();
-		$this->params   = JFactory::getApplication()->getParams('com_code');
+		$this->user     = Factory::getUser();
+		$this->params   = Factory::getApplication()->getParams('com_code');
 
 		// Check for errors.
 		if (count($errors = $model->getErrors()))
@@ -58,7 +63,7 @@ class CodeViewIssue extends JViewLegacy
 	 */
 	protected function prepareDocument()
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		// Because the application sets a default page title, we need to get it from the menu item itself
 		$menu = $app->getMenu()->getActive();
@@ -82,8 +87,8 @@ class CodeViewIssue extends JViewLegacy
 			$pathway = $app->getPathway();
 			$title   = '[#' . $this->item->jc_issue_id . '] - ' . $this->item->title;
 
-			$pathway->addItem($this->tracker->title, JRoute::_('index.php?option=com_code&view=tracker&tracker_id=' . $this->tracker->jc_tracker_id));
-			$pathway->addItem($this->item->title, JRoute::_('index.php?option=com_code&view=issue&issue_id=' . $this->item->jc_issue_id));
+			$pathway->addItem($this->tracker->title, Route::_('index.php?option=com_code&view=tracker&tracker_id=' . $this->tracker->jc_tracker_id));
+			$pathway->addItem($this->item->title, Route::_('index.php?option=com_code&view=issue&issue_id=' . $this->item->jc_issue_id));
 		}
 
 		// Check for empty title and add site name if param is set
@@ -93,11 +98,11 @@ class CodeViewIssue extends JViewLegacy
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 1)
 		{
-			$title = JText::sprintf('JPAGETITLE', $app->get('sitename'), $title);
+			$title = Text::sprintf('JPAGETITLE', $app->get('sitename'), $title);
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 2)
 		{
-			$title = JText::sprintf('JPAGETITLE', $title, $app->get('sitename'));
+			$title = Text::sprintf('JPAGETITLE', $title, $app->get('sitename'));
 		}
 
 		if (empty($title))

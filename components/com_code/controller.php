@@ -9,10 +9,13 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
+
 /**
  * Code Component Controller
  */
-class CodeController extends JControllerLegacy
+class CodeController extends BaseController
 {
 	/**
 	 * The default view.
@@ -28,12 +31,10 @@ class CodeController extends JControllerLegacy
 	 * @param   array    $urlparams  An array of safe url parameters and their variable types, for valid values see JFilterInput::clean().
 	 *
 	 * @return  $this
-	 *
-	 * @see     JFilterInput::clean()
 	 */
 	public function display($cachable = false, $urlparams = [])
 	{
-		$cachable  = JFactory::getUser()->guest;
+		$cachable  = Factory::getUser()->guest;
 		$urlparams = [
 			'search'     => 'STRING',
 			'limit'      => 'UINT',

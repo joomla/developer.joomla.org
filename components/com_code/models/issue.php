@@ -9,10 +9,14 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
+
 /**
  * Issue Model for Joomla Code
  */
-class CodeModelIssue extends JModelLegacy
+class CodeModelIssue extends BaseDatabaseModel
 {
 	/**
 	 * Fetch the comments for a specified issue
@@ -42,7 +46,7 @@ class CodeModelIssue extends JModelLegacy
 		}
 		catch (RuntimeException $e)
 		{
-			$this->setError(JText::sprintf('COM_CODE_ERROR_FETCHING_COMMENTS', $issueId));
+			$this->setError(Text::sprintf('COM_CODE_ERROR_FETCHING_COMMENTS', $issueId));
 		}
 	}
 
@@ -74,7 +78,7 @@ class CodeModelIssue extends JModelLegacy
 		}
 		catch (RuntimeException $e)
 		{
-			$this->setError(JText::sprintf('COM_CODE_ERROR_FETCHING_COMMITS', $issueId));
+			$this->setError(Text::sprintf('COM_CODE_ERROR_FETCHING_COMMITS', $issueId));
 		}
 	}
 
@@ -109,12 +113,12 @@ class CodeModelIssue extends JModelLegacy
 		}
 		catch (RuntimeException $e)
 		{
-			$this->setError(JText::sprintf('COM_CODE_ERROR_FETCHING_ISSUE', $issueId));
+			$this->setError(Text::sprintf('COM_CODE_ERROR_FETCHING_ISSUE', $issueId));
 		}
 
 		if (empty($data))
 		{
-			JError::raiseError(404, JText::_('COM_CODE_ERROR_ISSUE_NOT_FOUND'));
+			JError::raiseError(404, Text::_('COM_CODE_ERROR_ISSUE_NOT_FOUND'));
 		}
 
 		return $data;
@@ -152,7 +156,7 @@ class CodeModelIssue extends JModelLegacy
 		}
 		catch (RuntimeException $e)
 		{
-			$this->setError(JText::sprintf('COM_CODE_ERROR_FETCHING_TAGS', $issueId));
+			$this->setError(Text::sprintf('COM_CODE_ERROR_FETCHING_TAGS', $issueId));
 		}
 	}
 
@@ -184,7 +188,7 @@ class CodeModelIssue extends JModelLegacy
 		}
 		catch (RuntimeException $e)
 		{
-			$this->setError(JText::sprintf('COM_CODE_ERROR_FETCHING_TRACKER', $issueId));
+			$this->setError(Text::sprintf('COM_CODE_ERROR_FETCHING_TRACKER', $issueId));
 		}
 	}
 
@@ -198,6 +202,6 @@ class CodeModelIssue extends JModelLegacy
 	protected function populateState()
 	{
 		// Set the JoomlaCode issue ID from the request.
-		$this->setState('issue.id', JFactory::getApplication()->input->getUint('issue_id'));
+		$this->setState('issue.id', Factory::getApplication()->input->getUint('issue_id'));
 	}
 }

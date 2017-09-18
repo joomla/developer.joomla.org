@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 // Make sure our trait is loaded
-require_once __DIR__ . '/gforgetrait.php';
+JLoader::register(GForgeTrait::class, __DIR__ . '/gforgetrait.php');
 
 /**
  * Connector class to a GForge Advanced Server SOAP API.

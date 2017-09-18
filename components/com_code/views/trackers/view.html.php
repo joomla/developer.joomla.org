@@ -9,10 +9,14 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+
 /**
  * The HTML Joomla Code trackers view.
  */
-class CodeViewTrackers extends JViewLegacy
+class CodeViewTrackers extends HtmlView
 {
 	/**
 	 * Execute and display a template script.
@@ -25,8 +29,8 @@ class CodeViewTrackers extends JViewLegacy
 	{
 		$this->state  = $this->get('State');
 		$this->items  = $this->get('Items');
-		$this->user   = JFactory::getUser();
-		$this->params = JFactory::getApplication()->getParams('com_code');
+		$this->user   = Factory::getUser();
+		$this->params = Factory::getApplication()->getParams('com_code');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -51,7 +55,7 @@ class CodeViewTrackers extends JViewLegacy
 	 */
 	protected function prepareDocument()
 	{
-		$app = JFactory::getApplication();
+		$app = Factory::getApplication();
 
 		// Because the application sets a default page title, we need to get it from the menu item itself
 		$menu = $app->getMenu()->getActive();
@@ -74,11 +78,11 @@ class CodeViewTrackers extends JViewLegacy
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 1)
 		{
-			$title = JText::sprintf('JPAGETITLE', $app->get('sitename'), $title);
+			$title = Text::sprintf('JPAGETITLE', $app->get('sitename'), $title);
 		}
 		elseif ($app->get('sitename_pagetitles', 0) == 2)
 		{
-			$title = JText::sprintf('JPAGETITLE', $title, $app->get('sitename'));
+			$title = Text::sprintf('JPAGETITLE', $title, $app->get('sitename'));
 		}
 		else
 		{

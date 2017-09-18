@@ -9,6 +9,9 @@
 
 defined('_JEXEC') or die;
 
-$controller = JControllerLegacy::getInstance('Code');
-$controller->execute(JFactory::getApplication()->input->getCmd('task'));
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
+
+$controller = BaseController::getInstance('Code');
+$controller->execute(Factory::getApplication()->input->getCmd('task'));
 $controller->redirect();

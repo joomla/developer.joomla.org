@@ -9,12 +9,14 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\Utilities\ArrayHelper;
 
 /**
  * Tracker Model for Joomla Code
  */
-class CodeModelIssues extends JModelList
+class CodeModelIssues extends ListModel
 {
 	/**
 	 * Context string for the model type.
@@ -231,7 +233,7 @@ class CodeModelIssues extends JModelList
 				break;
 
 			case 'relative':
-				$nowDate      = $db->quote(JFactory::getDate()->toSql());
+				$nowDate      = $db->quote(Factory::getDate()->toSql());
 				$relativeDate = (int) $this->getState('filter.relative_date', 0);
 				$query->where($dateField . ' >= DATE_SUB(' . $nowDate . ', INTERVAL ' . $relativeDate . ' DAY)');
 				break;
@@ -270,7 +272,7 @@ class CodeModelIssues extends JModelList
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$app = JFactory::getApplication('site');
+		$app = Factory::getApplication('site');
 
 		// Load the component/page options from the application.
 		$this->setState('options', $app->getParams('com_code'));

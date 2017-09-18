@@ -9,16 +9,20 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Log\Log;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\Utilities\ArrayHelper;
 
 // Include the GForge connector classes.
-require JPATH_COMPONENT . '/helpers/gforge.php';
-require JPATH_COMPONENT . '/helpers/gforgelegacy.php';
+JLoader::register(GForge::class, JPATH_COMPONENT . '/helpers/gforge.php');
+JLoader::register(GForgeLegacy::class, JPATH_COMPONENT . '/helpers/gforgelegacy.php');
 
 /**
  * Tracker Synchronization Model for Joomla Code
  */
-class CodeModelTrackerSync extends JModelLegacy
+class CodeModelTrackerSync extends BaseDatabaseModel
 {
 	/**
 	 * The GForge SOAP connector object.
@@ -72,15 +76,15 @@ class CodeModelTrackerSync extends JModelLegacy
 		// Initialize the logger
 		$options['format']    = '{DATE}\t{TIME}\t{LEVEL}\t{CODE}\t{MESSAGE}';
 		$options['text_file'] = 'gforge_sync.php';
-		JLog::addLogger($options, JLog::INFO);
-		JLog::add('Starting the GForge Sync', JLog::INFO);
+		Log::addLogger($options, Log::INFO);
+		Log::add('Starting the GForge Sync', Log::INFO);
 
 		// Log the start time
-		$this->startTime = JFactory::getDate();
+		$this->startTime = Factory::getDate();
 
 		// Initialize variables.
-		$username = JFactory::getConfig()->get('gforgeLogin');
-		$password = JFactory::getConfig()->get('gforgePassword');
+		$username = Factory::getConfig()->get('gforgeLogin');
+		$password = Factory::getConfig()->get('gforgePassword');
 		$project  = 5; // Joomla project id.
 
 		// Wrap the processing in try/catch to log errors
@@ -118,8 +122,7 @@ class CodeModelTrackerSync extends JModelLegacy
 		}
 		catch (RuntimeException $e)
 		{
-			var_dump($e);die;
-			JLog::add('An error occurred during the sync: ' . $e->getMessage(), JLog::INFO);
+			Log::add('An error occurred during the sync: ' . $e->getMessage(), Log::INFO);
 
 			$this->sendEmail();
 
@@ -139,9 +142,9 @@ class CodeModelTrackerSync extends JModelLegacy
 	private function sendEmail()
 	{
 		// Get data
-		$config    = JFactory::getConfig();
-		$mailer    = JFactory::getMailer();
-		$params    = JComponentHelper::getParams('com_code');
+		$config    = Factory::getConfig();
+		$mailer    = Factory::getMailer();
+		$params    = ComponentHelper::getParams('com_code');
 		$addresses = $params->get('email_error', '');
 
 		// Build the message
@@ -163,7 +166,7 @@ class CodeModelTrackerSync extends JModelLegacy
 		{
 			if (!$mailer->sendMail($config->get('mailfrom'), $config->get('fromname'), $address, 'JoomlaCode Sync Error', $message))
 			{
-				JLog::add(sprintf('An error occurred sending the notification e-mail to %s.  Error: %s', $address, $e->getMessage()), JLog::INFO);
+				Log::add(sprintf('An error occurred sending the notification e-mail to %s.  Error: %s', $address, $e->getMessage()), Log::INFO);
 
 				continue;
 			}
@@ -243,16 +246,16 @@ class CodeModelTrackerSync extends JModelLegacy
 			catch (RuntimeException $e)
 			{
 				$erroredItems[] = $item->tracker_item_id;
-				JLog::add('An error occurred processing item ' . $item->tracker_item_id . ': ' . $e->getMessage());
+				Log::add('An error occurred processing item ' . $item->tracker_item_id . ': ' . $e->getMessage());
 			}
 		}
 
-		JLog::add('Tracker: ' . $tracker->tracker_id . '; Skipped: ' . $skippedCount . ';  Processed issues: ' . $processedCount . ';  Total: ' . $totalCount);
-		JLog::add('Issues: ' . $this->processingTotals['issues'] . ';  Changes: ' . $this->processingTotals['changes'] . ';  Users: ' . $this->processingTotals['users'] . ' ;');
+		Log::add('Tracker: ' . $tracker->tracker_id . '; Skipped: ' . $skippedCount . ';  Processed issues: ' . $processedCount . ';  Total: ' . $totalCount);
+		Log::add('Issues: ' . $this->processingTotals['issues'] . ';  Changes: ' . $this->processingTotals['changes'] . ';  Users: ' . $this->processingTotals['users'] . ' ;');
 
 		if (count($erroredItems))
 		{
-			JLog::add('Errored Items: ' . implode(', ', $erroredItems));
+			Log::add('Errored Items: ' . implode(', ', $erroredItems));
 		}
 
 		return true;
@@ -271,15 +274,15 @@ class CodeModelTrackerSync extends JModelLegacy
 		// Initialize the logger
 		$options['format']    = '{DATE}\t{TIME}\t{LEVEL}\t{CODE}\t{MESSAGE}';
 		$options['text_file'] = 'gforge_sync.php';
-		JLog::addLogger($options, JLog::INFO);
-		JLog::add('Starting the GForge Sync for item ' . $issueId . ' from tracker ' . $trackerId, JLog::INFO);
+		Log::addLogger($options, Log::INFO);
+		Log::add('Starting the GForge Sync for item ' . $issueId . ' from tracker ' . $trackerId, Log::INFO);
 
 		// Log the start time
-		$this->startTime = JFactory::getDate();
+		$this->startTime = Factory::getDate();
 
 		// Initialize variables.
-		$username = JFactory::getConfig()->get('gforgeLogin');
-		$password = JFactory::getConfig()->get('gforgePassword');
+		$username = Factory::getConfig()->get('gforgeLogin');
+		$password = Factory::getConfig()->get('gforgePassword');
 
 		// Connect to the main SOAP interface.
 		$this->gforge = new GForge('http://joomlacode.org/gf');
@@ -295,7 +298,7 @@ class CodeModelTrackerSync extends JModelLegacy
 		// If a tracker wasn't found return false.
 		if (!is_object($tracker))
 		{
-			JLog::add('Unable to get tracker from the server.');
+			Log::add('Unable to get tracker from the server.');
 
 			return false;
 		}
@@ -331,7 +334,7 @@ class CodeModelTrackerSync extends JModelLegacy
 		// Attempt to store the tracker data.
 		if (!$table->store())
 		{
-			JLog::add($table->getError());
+			Log::add($table->getError());
 
 			return false;
 		}
@@ -346,7 +349,7 @@ class CodeModelTrackerSync extends JModelLegacy
 		}
 		catch (RuntimeException $e)
 		{
-			JLog::add('An error occurred processing item ' . $issueId . ': ' . $e->getMessage());
+			Log::add('An error occurred processing item ' . $issueId . ': ' . $e->getMessage());
 
 			return false;
 		}
@@ -945,7 +948,7 @@ class CodeModelTrackerSync extends JModelLegacy
 			// Attempt to store the user data.
 			if (!$table->store())
 			{
-				JLog::add('Failed to store user ID ' . $user->user_id . ': ' . $table->getError());
+				Log::add('Failed to store user ID ' . $user->user_id . ': ' . $table->getError());
 			}
 
 			$this->processingTotals['users']++;

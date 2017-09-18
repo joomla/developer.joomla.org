@@ -9,6 +9,10 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
 /**
  * A helper class for selection lists in com_code's front-end
  */
@@ -22,16 +26,16 @@ class CodeHelperSelect
 	public static function getPrioritiesRaw()
 	{
 		return [
-			'1' => JText::_('COM_CODE_TRACKER_HIGH_PRIORITY'),
-			'2' => JText::_('COM_CODE_TRACKER_MEDIUM_HIGH_PRIORITY'),
-			'3' => JText::_('COM_CODE_TRACKER_MEDIUM_PRIORITY'),
-			'4' => JText::_('COM_CODE_TRACKER_LOW_PRIORITY'),
-			'5' => JText::_('COM_CODE_TRACKER_VERY_LOW_PRIORITY'),
+			'1' => Text::_('COM_CODE_TRACKER_HIGH_PRIORITY'),
+			'2' => Text::_('COM_CODE_TRACKER_MEDIUM_HIGH_PRIORITY'),
+			'3' => Text::_('COM_CODE_TRACKER_MEDIUM_PRIORITY'),
+			'4' => Text::_('COM_CODE_TRACKER_LOW_PRIORITY'),
+			'5' => Text::_('COM_CODE_TRACKER_VERY_LOW_PRIORITY'),
 		];
 	}
 
 	/**
-	 * Return the priorities as JHtml select options
+	 * Return the priorities as HTMLHelper select options
 	 *
 	 * @param   string  $defaultOptionKey  The translation key for the default selection option
 	 *
@@ -51,7 +55,7 @@ class CodeHelperSelect
 	 */
 	public static function getStatusRaw($trackerId = null)
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		$query = $db->getQuery(true)
 			->select('*')
@@ -66,7 +70,7 @@ class CodeHelperSelect
 	}
 
 	/**
-	 * Returns the statuses as JHtml select options
+	 * Returns the statuses as HTMLHelper select options
 	 *
 	 * @param   integer  $trackerId         Optional tracker ID to filter the status array by
 	 * @param   string   $defaultOptionKey  The translation key for the default selection option
@@ -85,7 +89,7 @@ class CodeHelperSelect
 	 */
 	public static function getTagRaw()
 	{
-		$db = JFactory::getDbo();
+		$db = Factory::getDbo();
 
 		return $db->setQuery(
 			$db->getQuery(true)
@@ -105,11 +109,11 @@ class CodeHelperSelect
 
 		$options = array();
 
-		$options[] = JHtml::_('select.option', -1, JText::_('None'));
+		$options[] = HTMLHelper::_('select.option', -1, Text::_('None'));
 
 		foreach ($array as $k => $v)
 		{
-			$options[] = JHtml::_('select.option', $k, $v);
+			$options[] = HTMLHelper::_('select.option', $k, $v);
 		}
 
 		return $options;
@@ -123,8 +127,8 @@ class CodeHelperSelect
 	public static function getComparatorOptions()
 	{
 		return [
-			JHtml::_('select.option', '1', JText::_('COM_CODE_TRACKER_IS')),
-			JHtml::_('select.option', '0', JText::_('COM_CODE_TRACKER_IS_NOT')),
+			HTMLHelper::_('select.option', '1', Text::_('COM_CODE_TRACKER_IS')),
+			HTMLHelper::_('select.option', '0', Text::_('COM_CODE_TRACKER_IS_NOT')),
 		];
 	}
 
@@ -136,15 +140,15 @@ class CodeHelperSelect
 	public static function getDateOptions()
 	{
 		return [
-			JHtml::_('select.option', 'none', JText::_('COM_CODE_TRACKER_NONE')),
-			JHtml::_('select.option', 'created', JText::_('COM_CODE_TRACKER_CREATED')),
-			JHtml::_('select.option', 'modified', JText::_('COM_CODE_TRACKER_LAST_MODIFIED')),
-			JHtml::_('select.option', 'closed', JText::_('COM_CODE_TRACKER_CLOSED')),
+			HTMLHelper::_('select.option', 'none', Text::_('COM_CODE_TRACKER_NONE')),
+			HTMLHelper::_('select.option', 'created', Text::_('COM_CODE_TRACKER_CREATED')),
+			HTMLHelper::_('select.option', 'modified', Text::_('COM_CODE_TRACKER_LAST_MODIFIED')),
+			HTMLHelper::_('select.option', 'closed', Text::_('COM_CODE_TRACKER_CLOSED')),
 		];
 	}
 
 	/**
-	 * Convert an array of options to a JHtmlSelect-compatible options array
+	 * Convert an array of options to a HTMLHelperSelect-compatible options array
 	 *
 	 * @param   string  $defaultOptionKey  The translation key for the default selection option
 	 *
@@ -159,11 +163,11 @@ class CodeHelperSelect
 			$defaultOptionKey = 'JGLOBAL_SELECT_AN_OPTION';
 		}
 
-		$options[] = JHtml::_('select.option', 0, JText::_($defaultOptionKey));
+		$options[] = HTMLHelper::_('select.option', 0, Text::_($defaultOptionKey));
 
 		foreach ($array as $k => $v)
 		{
-			$options[] = JHtml::_('select.option', $k, $v);
+			$options[] = HTMLHelper::_('select.option', $k, $v);
 		}
 
 		return $options;
