@@ -15,7 +15,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 /**
  * HTML utility class for creating bar charts using jQuery and jqplot JavaScript libraries.
  */
-abstract class HTMLHelperBarchart
+abstract class JHtmlBarchart
 {
 	/**
 	 * Array containing information for loaded files
