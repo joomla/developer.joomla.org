@@ -44,6 +44,11 @@ class PlgContentNightlyBuilds extends CMSPlugin
 	public function onContentPrepare($context, &$article, &$params, $page = 0)
 	{
 		// Simple performance check to determine whether bot should process further
+		if (!isset($article->text, $article->introtext))
+		{
+			return;
+		}
+
 		if (strpos($article->text, $this->marker) === false && strpos($article->introtext, $this->marker) === false)
 		{
 			return;
