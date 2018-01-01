@@ -39,6 +39,13 @@
 					<!-- <option value="Radar">MOD_JOOMLADATA_FIELDSET_BASIC_CHARTTYPE_OPTION_RADAR</option> -->
 				</field>
 			</fieldset>
+			<fieldset name="advanced">
+				<field name="cache" type="radio" default="1" class="btn-group btn-group-yesno" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="cache_time" type="number" default="900" filter="integer" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC" showon="cache:1" />
+			</fieldset>
 		</fields>
 	</config>
 </extension>
