@@ -98,13 +98,8 @@ class PlgContentNightlyBuilds extends CMSPlugin
 			$packages[$version][] = $file;
 		}
 
-		$buildTime = file_exists("$nightlyDir/time.txt") ? trim(file_get_contents("$nightlyDir/time.txt")) : false;
-
-		// Display the build time if available
-		$html = $buildTime ? '<div class="alert alert-info">' . Text::sprintf('PLG_CONTENT_NIGHTLYBUILDS_BUILD_TIME', HTMLHelper::_('date', $buildTime, 'l, d F Y H:i:s T')) . '</div>' : '';
-
 		// Start sliders for the releases
-		$html .= HTMLHelper::_('bootstrap.startAccordion', 'nightlyBuilds');
+		$html = HTMLHelper::_('bootstrap.startAccordion', 'nightlyBuilds');
 
 		$currentVersion = Version::MAJOR_VERSION . '.' . Version::MINOR_VERSION;
 		$minor          = Version::MAJOR_VERSION . '.' . (Version::MINOR_VERSION + 1);
@@ -162,6 +157,11 @@ class PlgContentNightlyBuilds extends CMSPlugin
 					HTMLHelper::_('link', "https://github.com/joomla/joomla-cms/tree/$linkedBranch", $linkedBranch, ['class' => 'alert-link'])
 				)
 			);
+
+			$buildTime = file_exists("$nightlyDir/$branch-time.txt") ? trim(file_get_contents("$nightlyDir/$branch-time.txt")) : false;
+
+			// Display the build time if available
+			$html .= $buildTime ? '<div class="alert alert-info">' . Text::sprintf('PLG_CONTENT_NIGHTLYBUILDS_BUILD_TIME', HTMLHelper::_('date', $buildTime, 'l, d F Y H:i:s T')) . '</div>' : '';
 
 			$html .= '<ul>';
 
