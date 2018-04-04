@@ -65,7 +65,6 @@
 /tests
 /tmp
 /xsd
-/.htaccess
 /.travis.yml
 /CONTRIBUTING.md
 /LICENSE.txt
