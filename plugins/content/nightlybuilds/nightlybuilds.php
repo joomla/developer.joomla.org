@@ -82,20 +82,31 @@ class PlgContentNightlyBuilds extends CMSPlugin
 		// Read the ZIP packages to get our file list and split it by branch
 		jimport('joomla.filesystem.folder');
 
-		$packages = [];
+		$packageProvision = [];
 
 		foreach (JFolder::files($nightlyDir, '.zip') as $file)
 		{
-			// Strip the leading "Joomla_" part of the filename off then extract the version from the three characters after that
-			$version = substr($file, 7, 3);
+			// Strip the leading "Joomla_" part of the filename off then extract the version from the first two dotted segments after that
+			preg_match_all('/\./', $file, $matches, PREG_OFFSET_CAPTURE);
+			$version = substr(substr($file, 0, $matches[0][1][1]), 7);
 
 			// Add the file to the packages array by branch
-			if (!isset($packages[$version]))
+			if (!isset($packageProvision[$version]))
 			{
-				$packages[$version] = [];
+				$packageProvision[$version] = [];
 			}
 
-			$packages[$version][] = $file;
+			$packageProvision[$version][] = $file;
+		}
+
+		// Sort packages
+		$packages = [];
+		$versionKeys = array_keys($packageProvision);
+		natsort($versionKeys);
+
+		foreach ($versionKeys as $key)
+		{
+			$packages[$key] = $packageProvision[$key];
 		}
 
 		// Start sliders for the releases
@@ -110,7 +121,7 @@ class PlgContentNightlyBuilds extends CMSPlugin
 			$commitSha    = file_exists("$nightlyDir/$branch.txt") ? trim(file_get_contents("$nightlyDir/$branch.txt")) : false;
 			$linkedBranch = $commitSha;
 
-			// Set the updateserver per branch defaults to the next patch updateserver
+			// Set the updateserver per branch
 			switch ($branch)
 			{
 				case $minor :
@@ -123,8 +134,13 @@ class PlgContentNightlyBuilds extends CMSPlugin
 
 					break;
 
-				default :
+				case $currentVersion :
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_patch_list.xml';
+
+					break;
+
+				default :
+					$updateserver = '';
 
 					break;
 			}
@@ -172,14 +188,17 @@ class PlgContentNightlyBuilds extends CMSPlugin
 
 			$html .= '</ul>';
 
-			// Display the Updateserver
-			$html .= sprintf(
-				'<p>%s</p>',
-				Text::sprintf(
-					'PLG_CONTENT_NIGHTLYBUILDS_UDATESERVER',
-					HTMLHelper::_('link', $updateserver, $updateserver)
-				)
-			);
+			// Display the update server if available
+			if ($updateserver !== '')
+			{
+				$html .= sprintf(
+					'<p>%s</p>',
+					Text::sprintf(
+						'PLG_CONTENT_NIGHTLYBUILDS_UDATESERVER',
+						HTMLHelper::_('link', $updateserver, $updateserver)
+					)
+				);
+			}
 
 			$html .= HTMLHelper::_('bootstrap.endSlide');
 		}
