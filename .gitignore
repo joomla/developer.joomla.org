@@ -49,6 +49,9 @@
 !/plugins/content
 /plugins/content/*
 !/plugins/content/nightlybuilds
+!/plugins/system
+/plugins/system/*
+!/plugins/system/devrouting
 /pulls
 /standards
 /templates/*
