@@ -16,4 +16,10 @@ use Joomla\CMS\MVC\Controller\BaseController;
  */
 class GHMarkdownDisplayController extends BaseController
 {
+	/**
+	 * The default view.
+	 *
+	 * @var  string
+	 */
+	protected $default_view = 'document';
 }
