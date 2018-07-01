@@ -50,21 +50,31 @@
 	</fieldset>
 
 	<fieldset
-		name="section"
+		name="document"
 	>
 
 		<field
-			name="repository_id"
+			name="section_id"
 			type="sql"
-			label="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_LABEL"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_SECTION_LABEL"
 			size="30"
 			required="true"
-			sql_select="id AS value, name AS text"
-			sql_from="#__ghmarkdowndisplay_repositories"
+			sql_select="a.id AS value, CONCAT(r.name, ' - ', a.name) AS text"
+			sql_from="#__ghmarkdowndisplay_sections AS a"
+			sql_join="#__ghmarkdowndisplay_repositories AS r ON r.id = a.repository_id"
 			key_field="value"
 			value_field="text"
 			validate="exists"
-			exists_table="#__ghmarkdowndisplay_repositories"
+			exists_table="#__ghmarkdowndisplay_sections"
+		/>
+
+		<field
+			name="file"
+			type="text"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_FILE_LABEL"
+			description="COM_GHMARKDOWNDISPLAY_FIELD_FILE_DESC"
+			required="true"
+			filter="path"
 		/>
 	</fieldset>
 </form>
