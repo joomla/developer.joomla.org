@@ -33,18 +33,23 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 
 		$db = $this->getDbo();
 
-		$document = $db->setQuery(
-			$db->getQuery(true)
-				->select(
-					[
-						'a.*',
-						's.name AS section_name'
-					]
-				)
-				->from('#__ghmarkdowndisplay_documents AS a')
-				->join('LEFT', '#__ghmarkdowndisplay_sections AS s ON s.id = a.section_id')
-				->where('a.id = ' . (int) $pk)
-		)->loadObject();
+		$query = $db->getQuery(true)
+			->select(
+				[
+					'a.*',
+					's.name AS section_name',
+				]
+			)
+			->from('#__ghmarkdowndisplay_documents AS a')
+			->join('LEFT', '#__ghmarkdowndisplay_sections AS s ON s.id = a.section_id')
+			->where('a.id = ' . (int) $pk);
+
+		if (Factory::getUser()->guest)
+		{
+			$query->where('a.published = 1');
+		}
+
+		$document = $db->setQuery($query)->loadObject();
 
 		if ($document === null)
 		{
