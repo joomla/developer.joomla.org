@@ -6,8 +6,8 @@
 		<field
 			name="search"
 			type="text"
-			label="COM_GHMARKDOWNDISPLAY_FILTER_SEARCH_REPOSITORIES_LABEL"
-			description="COM_GHMARKDOWNDISPLAY_SEARCH_IN_REPOSITORY"
+			label="COM_GHMARKDOWNDISPLAY_FILTER_SEARCH_SECTIONS_LABEL"
+			description="COM_GHMARKDOWNDISPLAY_SEARCH_IN_SECTION"
 			hint="JSEARCH_FILTER"
 		/>
 
@@ -32,12 +32,12 @@
 			default="a.id DESC"
 			>
 			<option value="">JGLOBAL_SORT_BY</option>
+			<option value="a.ordering ASC">JGRID_HEADING_ORDERING_ASC</option>
+			<option value="a.ordering DESC">JGRID_HEADING_ORDERING_DESC</option>
 			<option value="a.name ASC">COM_GHMARKDOWNDISPLAY_HEADING_NAME_ASC</option>
 			<option value="a.name DESC">COM_GHMARKDOWNDISPLAY_HEADING_NAME_DESC</option>
-			<option value="a.repository_owner ASC">COM_GHMARKDOWNDISPLAY_HEADING_REPOSITORY_OWNER_ASC</option>
-			<option value="a.repository_owner DESC">COM_GHMARKDOWNDISPLAY_HEADING_REPOSITORY_OWNER_DESC</option>
-			<option value="a.repository_name ASC">COM_GHMARKDOWNDISPLAY_HEADING_REPOSITORY_NAME_ASC</option>
-			<option value="a.repository_name DESC">COM_GHMARKDOWNDISPLAY_HEADING_REPOSITORY_NAME_DESC</option>
+			<option value="r.name ASC">COM_GHMARKDOWNDISPLAY_HEADING_REPOSITORY_ASC</option>
+			<option value="r.name DESC">COM_GHMARKDOWNDISPLAY_HEADING_REPOSITORY_DESC</option>
 			<option value="a.id ASC">JGRID_HEADING_ID_ASC</option>
 			<option value="a.id DESC">JGRID_HEADING_ID_DESC</option>
 		</field>

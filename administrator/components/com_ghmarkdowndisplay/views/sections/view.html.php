@@ -17,9 +17,9 @@ use Joomla\CMS\Object\CMSObject;
 use Joomla\CMS\Pagination\Pagination;
 
 /**
- * Repositories view class
+ * Sections view class
  */
-class GHMarkdownDisplayViewRepositories extends HtmlView
+class GHMarkdownDisplayViewSections extends HtmlView
 {
 	/**
 	 * The active search tools filters
@@ -95,22 +95,22 @@ class GHMarkdownDisplayViewRepositories extends HtmlView
 	 */
 	protected function addToolbar()
 	{
-		JToolbarHelper::title(Text::_('COM_GHMARKDOWNDISPLAY_VIEW_REPOSITORIES'), 'file-2');
+		JToolbarHelper::title(Text::_('COM_GHMARKDOWNDISPLAY_VIEW_SECTIONS'), 'file-2');
 
-		JToolbarHelper::addNew('repository.add');
-		JToolbarHelper::editList('repository.edit');
+		JToolbarHelper::addNew('section.add');
+		JToolbarHelper::editList('section.edit');
 
-		JToolbarHelper::publish('repositories.publish', 'JTOOLBAR_PUBLISH', true);
-		JToolbarHelper::unpublish('repositories.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-		JToolbarHelper::checkin('repositories.checkin');
+		JToolbarHelper::publish('sections.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('sections.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+		JToolbarHelper::checkin('sections.checkin');
 
 		if ($this->state->get('filter.published') == -2)
 		{
-			JToolbarHelper::deleteList('JGLOBAL_CONFIRM_DELETE', 'repositories.delete', 'JTOOLBAR_EMPTY_TRASH');
+			JToolbarHelper::deleteList('JGLOBAL_CONFIRM_DELETE', 'sections.delete', 'JTOOLBAR_EMPTY_TRASH');
 		}
 		else
 		{
-			JToolbarHelper::trash('repositories.trash');
+			JToolbarHelper::trash('sections.trash');
 		}
 
 		if (Factory::getUser()->authorise('core.admin', 'com_ghmarkdowndisplay'))

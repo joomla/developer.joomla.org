@@ -31,5 +31,11 @@ class GHMarkdownDisplayHelper extends ContentHelper
 			'index.php?option=com_ghmarkdowndisplay&view=repositories',
 			$vName === 'repositories'
 		);
+
+		JHtmlSidebar::addEntry(
+			Text::_('COM_GHMARKDOWNDISPLAY_SUBMENU_SECTIONS'),
+			'index.php?option=com_ghmarkdowndisplay&view=sections',
+			$vName === 'sections'
+		);
 	}
 }
