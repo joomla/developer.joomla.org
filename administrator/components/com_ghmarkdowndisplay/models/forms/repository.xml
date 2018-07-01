@@ -66,12 +66,5 @@
 			label="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_NAME_LABEL"
 			required="true"
 		/>
-
-		<field
-			name="repository_path"
-			type="text"
-			label="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_PATH_LABEL"
-			description="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_PATH_DESC"
-		/>
 	</fieldset>
 </form>
