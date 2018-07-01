@@ -23,20 +23,6 @@
 		/>
 
 		<field
-			name="repository_owner"
-			type="text"
-			label="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_OWNER_LABEL"
-			required="true"
-		/>
-
-		<field
-			name="repository_name"
-			type="text"
-			label="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_NAME_LABEL"
-			required="true"
-		/>
-
-		<field
 			name="published"
 			type="list"
 			label="JSTATUS"
@@ -60,6 +46,32 @@
 			name="checked_out_time"
 			type="hidden"
 			filter="unset"
+		/>
+	</fieldset>
+
+	<fieldset
+		name="repository"
+	>
+
+		<field
+			name="repository_owner"
+			type="text"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_OWNER_LABEL"
+			required="true"
+		/>
+
+		<field
+			name="repository_name"
+			type="text"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_NAME_LABEL"
+			required="true"
+		/>
+
+		<field
+			name="repository_path"
+			type="text"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_PATH_LABEL"
+			description="COM_GHMARKDOWNDISPLAY_FIELD_REPOSITORY_PATH_DESC"
 		/>
 	</fieldset>
 </form>

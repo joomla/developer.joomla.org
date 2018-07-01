@@ -36,9 +36,8 @@ Factory::getDocument()->addScriptDeclaration($js);
 	<div class="form-horizontal">
 		<div class="row-fluid">
 			<div class="span9">
-				<fieldset class="adminform">
-					<?php echo $this->form->renderField('repository_owner'); ?>
-					<?php echo $this->form->renderField('repository_name'); ?>
+				<fieldset>
+					<?php echo $this->form->renderFieldset('repository'); ?>
 				</fieldset>
 			</div>
 			<div class="span3">
