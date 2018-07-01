@@ -26,7 +26,6 @@
 			name="published"
 			type="list"
 			label="JSTATUS"
-			description="COM_GHMARKDOWNDISPLAY_FIELD_STATE_DESC"
 			class="chzn-color-state"
 			size="1"
 			default="1"

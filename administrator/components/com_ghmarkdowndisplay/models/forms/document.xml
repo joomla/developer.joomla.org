@@ -23,10 +23,18 @@
 		/>
 
 		<field
+			name="alias"
+			type="text"
+			label="JFIELD_ALIAS_LABEL"
+			description="JFIELD_ALIAS_DESC"
+			hint="JFIELD_ALIAS_PLACEHOLDER"
+			size="40"
+		/>
+
+		<field
 			name="published"
 			type="list"
 			label="JSTATUS"
-			description="COM_GHMARKDOWNDISPLAY_FIELD_STATE_DESC"
 			class="chzn-color-state"
 			size="1"
 			default="1"

@@ -9,6 +9,9 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Application\ApplicationHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Table\Table;
 
 /**
@@ -34,5 +37,34 @@ class GHMarkdownDisplayTableDocument extends Table
 	public function __construct(JDatabaseDriver $db)
 	{
 		parent::__construct('#__ghmarkdowndisplay_documents', 'id', $db);
+	}
+
+	/**
+	 * Overloaded check function
+	 *
+	 * @return  boolean  True on success, false on failure
+	 */
+	public function check()
+	{
+		if (trim($this->title) === '')
+		{
+			$this->setError(Text::_('COM_GHMARKDOWNDISPLAY_WARNING_PROVIDE_VALID_NAME'));
+
+			return false;
+		}
+
+		if (trim($this->alias) === '')
+		{
+			$this->alias = $this->title;
+		}
+
+		$this->alias = ApplicationHelper::stringURLSafe($this->alias);
+
+		if (trim(str_replace('-', '', $this->alias)) == '')
+		{
+			$this->alias = Factory::getDate()->format('Y-m-d-H-i-s');
+		}
+
+		return true;
 	}
 }
