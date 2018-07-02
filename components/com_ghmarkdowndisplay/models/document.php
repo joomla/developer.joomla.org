@@ -9,6 +9,7 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Cache\Exception\CacheExceptionInterface;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\ItemModel;
@@ -92,10 +93,13 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 				[
 					'a.*',
 					's.name AS section_name',
+					'r.repository_owner AS repository_owner',
+					'r.repository_name AS repository_name',
 				]
 			)
 			->from('#__ghmarkdowndisplay_documents AS a')
 			->join('LEFT', '#__ghmarkdowndisplay_sections AS s ON s.id = a.section_id')
+			->join('LEFT', '#__ghmarkdowndisplay_repositories AS r ON r.id = s.repository_id')
 			->where('a.id = ' . (int) $pk);
 
 		if (Factory::getUser()->guest)
@@ -113,6 +117,64 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 		}
 
 		return $document;
+	}
+
+	/**
+	 * Get the markdown document as its rendered HTML
+	 *
+	 * @param   object  $document  The document object as built by this class' getItem method
+	 *
+	 * @return  string|boolean  Rendered document on success, false on failure.
+	 */
+	public function getRenderedDocument($document)
+	{
+		/** @var \Joomla\CMS\Cache\Controller\CallbackController $cache */
+		$cache = Factory::getCache('com_ghmarkdowndisplay');
+
+		// Caching should always be enabled here unless in debug mode
+		$cache->setCaching(!JDEBUG);
+
+		// Cache this for one day
+		$cache->setLifeTime(1440);
+
+		$handler = function ($document)
+		{
+			$github = new JGithub;
+
+			$data = $github->repositories->contents->get($document->repository_owner, $document->repository_name, $document->file);
+
+			switch ($data->encoding)
+			{
+				case 'base64':
+					$contents = base64_decode($data->content);
+
+					break;
+
+				default:
+					$this->setError(Text::sprintf('COM_GHMARKDOWNDISPLAY_ERROR_UNSUPPORTED_ENCODING', $data->encoding));
+
+					return false;
+			}
+
+			$html = $github->markdown->render($contents, 'gfm', $document->repository_owner . '/' . $document->repository_name);
+
+			// TODO: Postprocessing links
+			return $html;
+		};
+
+		try
+		{
+			if (JDEBUG)
+			{
+				return $handler($document);
+			}
+
+			return $cache->get($handler, [$document], 'com_ghmarkdowndisplay.document.' . $document->id);
+		}
+		catch (CacheExceptionInterface $e)
+		{
+			return $handler($document);
+		}
 	}
 
 	/**

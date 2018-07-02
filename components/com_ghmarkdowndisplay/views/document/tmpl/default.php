@@ -61,6 +61,7 @@ HTMLHelper::_('stylesheet', 'com_ghmarkdowndisplay/github-light.css', ['version'
 		</div>
 
 		<div class="span9">
+			<?php echo $this->renderedDocument; ?>
 		</div>
 	</div>
 </div>

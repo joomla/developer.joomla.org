@@ -49,6 +49,13 @@ class GHMarkdownDisplayViewDocument extends HtmlView
 	protected $params;
 
 	/**
+	 * The rendered markdown document
+	 *
+	 * @var  string
+	 */
+	protected $renderedDocument;
+
+	/**
 	 * The state information
 	 *
 	 * @var  CMSObject
@@ -68,10 +75,11 @@ class GHMarkdownDisplayViewDocument extends HtmlView
 	public function display($tpl = null)
 	{
 		// Initialise variables.
-		$this->item       = $this->get('Item');
-		$this->navigation = $this->getModel()->getDocumentNavigation();
-		$this->state      = $this->get('State');
-		$this->params     = $this->state->params;
+		$this->item             = $this->get('Item');
+		$this->navigation       = $this->get('DocumentNavigation');
+		$this->state            = $this->get('State');
+		$this->params           = $this->state->params;
+		$this->renderedDocument = $this->getModel()->getRenderedDocument($this->item);
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
