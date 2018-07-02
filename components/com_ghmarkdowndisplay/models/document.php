@@ -141,7 +141,7 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 		{
 			$github = new JGithub;
 
-			$data = $github->repositories->contents->get($document->repository_owner, $document->repository_name, $document->file);
+			$data = $github->repositories->contents->get($document->repository_owner, $document->repository_name, ltrim($document->file, '/'));
 
 			switch ($data->encoding)
 			{
