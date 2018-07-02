@@ -39,6 +39,12 @@ class PlgSystemDevRouting extends CMSPlugin
 	 */
 	public function onAfterRoute()
 	{
+		// Only for frontend
+		if (!$this->app->isClient('site'))
+		{
+			return;
+		}
+
 		// Only for the GitHub component
 		if ($this->app->input->get('option') !== 'com_ghmarkdowndisplay')
 		{
