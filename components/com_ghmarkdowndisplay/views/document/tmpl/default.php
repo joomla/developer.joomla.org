@@ -28,6 +28,11 @@ HTMLHelper::_('stylesheet', 'com_ghmarkdowndisplay/github-light.css', ['version'
 	<?php endif; ?>
 
 	<div class="page-header">
+		<div class="pull-right">
+			<a href="https://github.com/<?php echo $this->item->repository_owner; ?>/<?php echo $this->item->repository_name; ?>/edit/master/<?php echo ltrim($this->item->file, '/'); ?>" target="_blank" class="btn btn-primary">
+				<?php echo Text::_('COM_GHMARKDOWNDISPLAY_EDIT_ON_GITHUB'); ?>
+			</a>
+		</div>
 		<h2 itemprop="headline">
 			<?php echo $this->escape($this->item->name); ?>
 		</h2>
