@@ -73,9 +73,12 @@ class GHMarkdownDisplayRouter extends RouterView
 					$db    = Factory::getDbo();
 					$docId = (int) $db->setQuery(
 						$db->getQuery(true)
-							->select('id')
-							->from('#__ghmarkdowndisplay_documents')
-							->where('alias = ' . $db->quote($segments[0]))
+							->select('d.id')
+							->from('#__ghmarkdowndisplay_documents AS d')
+							->join('LEFT', '#__ghmarkdowndisplay_sections AS s ON s.id = d.section_id')
+							->join('LEFT', '#__ghmarkdowndisplay_repositories AS r ON r.id = s.repository_id')
+							->where('d.alias = ' . $db->quote($segments[0]))
+							->where('r.id = ' . (int) $vars['repository'])
 					)->loadResult();
 
 					if (!$docId)
