@@ -46,7 +46,7 @@ class GHMarkdownDisplayTableDocument extends Table
 	 */
 	public function check()
 	{
-		if (trim($this->title) === '')
+		if (trim($this->name) === '')
 		{
 			$this->setError(Text::_('COM_GHMARKDOWNDISPLAY_WARNING_PROVIDE_VALID_NAME'));
 
