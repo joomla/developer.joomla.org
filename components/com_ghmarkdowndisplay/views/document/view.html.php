@@ -28,6 +28,20 @@ class GHMarkdownDisplayViewDocument extends HtmlView
 	protected $item;
 
 	/**
+	 * An array holding the document's navigation tree
+	 *
+	 * @var  array
+	 */
+	protected $navigation;
+
+	/**
+	 * The CSS class suffix to append to the view container
+	 *
+	 * @var  string
+	 */
+	protected $pageclass_sfx;
+
+	/**
 	 * The view parameters
 	 *
 	 * @var  Registry
@@ -54,9 +68,10 @@ class GHMarkdownDisplayViewDocument extends HtmlView
 	public function display($tpl = null)
 	{
 		// Initialise variables.
-		$this->item   = $this->get('Item');
-		$this->state  = $this->get('State');
-		$this->params = $this->state->params;
+		$this->item       = $this->get('Item');
+		$this->navigation = $this->getModel()->getDocumentNavigation();
+		$this->state      = $this->get('State');
+		$this->params     = $this->state->params;
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))

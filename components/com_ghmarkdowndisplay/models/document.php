@@ -19,17 +19,71 @@ use Joomla\CMS\MVC\Model\ItemModel;
 class GHMarkdownDisplayModelDocument extends ItemModel
 {
 	/**
+	 * Get the navigational data for a document's repository.
+	 *
+	 * @param   integer  $repositoryId  The repository ID of the document to process
+	 *
+	 * @return  array|boolean  Array on success, false on failure.
+	 */
+	public function getDocumentNavigation($repositoryId = null)
+	{
+		$repositoryId = (!empty($repositoryId)) ? $repositoryId : (int) $this->getState($this->getName() . '.repository_id');
+
+		if (!$repositoryId)
+		{
+			$this->setError(Text::_('COM_GHMARKDOWNDISPLAY_ERROR_REPOSITORY_ID_REQUIRED'));
+
+			return false;
+		}
+
+		$db = $this->getDbo();
+
+		$sectionQuery = $db->getQuery(true)
+			->select(['id', 'repository_id', 'name'])
+			->from('#__ghmarkdowndisplay_sections')
+			->where('repository_id = ' . (int) $repositoryId)
+			->order('ordering ASC');
+
+		if (Factory::getUser()->guest)
+		{
+			$sectionQuery->where('published = 1');
+		}
+
+		$sections = $db->setQuery($sectionQuery)->loadAssocList('id');
+
+		$documentQuery = $db->getQuery(true)
+			->select(['id', 'section_id', 'name'])
+			->from('#__ghmarkdowndisplay_documents')
+			->where('section_id IN (' . implode(',', array_keys($sections)) . ')')
+			->order('ordering ASC');
+
+		if (Factory::getUser()->guest)
+		{
+			$documentQuery->where('published = 1');
+		}
+
+		$documents = $db->setQuery($documentQuery)->loadAssocList('id');
+
+		return compact('sections', 'documents');
+	}
+
+	/**
 	 * Method to get a single record.
 	 *
 	 * @param   integer  $pk  The id of the primary key.
 	 *
 	 * @return  object|boolean  Object on success, false on failure.
-	 *
-	 * @since   1.6
 	 */
 	public function getItem($pk = null)
 	{
 		$pk = (!empty($pk)) ? $pk : (int) $this->getState($this->getName() . '.id');
+
+		if (!$pk)
+		{
+			$this->setError(Text::_('COM_GHMARKDOWNDISPLAY_ERROR_DOCUMENT_ID_REQUIRED'));
+
+			return false;
+		}
 
 		$db = $this->getDbo();
 
@@ -70,9 +124,12 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 	 */
 	protected function populateState()
 	{
-		// Load state from the request.
-		$this->setState($this->getName() . '.id', Factory::getApplication()->input->getUint('id'));
+		$app = Factory::getApplication();
 
-		$this->setState('params', Factory::getApplication()->getParams('com_ghmarkdowndisplay'));
+		// Load state from the request.
+		$this->setState($this->getName() . '.id', $app->input->getUint('id'));
+		$this->setState($this->getName() . '.repository_id', $app->input->getUint('repository'));
+
+		$this->setState('params', $app->getParams('com_ghmarkdowndisplay'));
 	}
 }

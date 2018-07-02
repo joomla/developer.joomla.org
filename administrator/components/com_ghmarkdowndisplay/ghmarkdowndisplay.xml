@@ -35,6 +35,10 @@
 		<folder>views</folder>
 	</files>
 
+	<media destination="com_ghmarkdowndisplay" folder="media">
+		<folder>css</folder>
+	</media>
+
 	<administration>
 		<menu link="option=com_ghmarkdowndisplay">COM_GHMARKDOWNDISPLAY</menu>
 		<files folder="admin">
