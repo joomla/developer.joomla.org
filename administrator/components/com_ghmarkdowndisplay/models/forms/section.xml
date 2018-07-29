@@ -62,8 +62,6 @@
 			sql_from="#__ghmarkdowndisplay_repositories"
 			key_field="value"
 			value_field="text"
-			validate="exists"
-			exists_table="#__ghmarkdowndisplay_repositories"
 		/>
 	</fieldset>
 </form>

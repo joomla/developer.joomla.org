@@ -72,8 +72,6 @@
 			sql_join="#__ghmarkdowndisplay_repositories AS r ON r.id = a.repository_id"
 			key_field="value"
 			value_field="text"
-			validate="exists"
-			exists_table="#__ghmarkdowndisplay_sections"
 		/>
 
 		<field
