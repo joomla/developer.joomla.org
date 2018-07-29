@@ -10,9 +10,11 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Cache\Exception\CacheExceptionInterface;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\ItemModel;
+use Joomla\Registry\Registry;
 
 /**
  * Document model class.
@@ -157,7 +159,26 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 
 		$handler = function ($document)
 		{
-			$github = new JGithub;
+			$componentParams = ComponentHelper::getParams('com_ghmarkdowndisplay');
+
+			$options = new Registry;
+
+			// Set a user agent for the request
+			$options->set('userAgent', 'GitHubMarkdownDisplay/1.0');
+
+			// If an API token is set in the params, use it for authentication
+			if ($componentParams->get('github_token', ''))
+			{
+				$options->set('gh.token', $componentParams->get('github_token', ''));
+			}
+			// Set the username and password if set in the params
+			elseif ($componentParams->get('github_user', '') && $componentParams->get('github_password'))
+			{
+				$options->set('api.username', $componentParams->get('github_user', ''));
+				$options->set('api.password', $componentParams->get('github_password', ''));
+			}
+
+			$github = new JGithub($options);
 
 			$data = $github->repositories->contents->get($document->repository_owner, $document->repository_name, ltrim($document->file, '/'));
 
