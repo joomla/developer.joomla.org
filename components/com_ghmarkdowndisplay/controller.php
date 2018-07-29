@@ -52,9 +52,10 @@ class GHMarkdownDisplayController extends BaseController
 			// If no item is given, the view will handle errors
 			if ($item !== false)
 			{
-				// Handle redirecting to the canonical document URL
-				$this->setRedirect(Route::_('index.php?option=com_ghmarkdowndisplay&view=document&id=' . $item->id));
+				// Redirect to the canonical document URL, use the application to specify 301 since the controller API doesn't support this
+				Factory::getApplication()->redirect(Route::_('index.php?option=com_ghmarkdowndisplay&view=document&id=' . $item->id), 301);
 
+				// Generally not needed since redirect shuts down the process, but ensures the below code never runs
 				return $this;
 			}
 		}
