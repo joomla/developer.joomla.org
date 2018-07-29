@@ -10,6 +10,7 @@
 !/administrator/components
 /administrator/components/*
 !/administrator/components/com_code
+!/administrator/components/com_ghmarkdowndisplay
 !/administrator/components/com_trackerstats
 /bin
 /build
@@ -22,6 +23,7 @@
 !/components
 /components/*
 !/components/com_code
+!/components/com_ghmarkdowndisplay
 !/components/com_trackerstats
 /glip/*
 !/glip/jenkins.php
@@ -34,6 +36,7 @@
 /manual
 /media/*
 !/media/com_code
+!/media/com_ghmarkdowndisplay
 !/media/com_trackerstats
 !/media/mod_joomladata
 /modules/*
@@ -46,6 +49,9 @@
 !/plugins/content
 /plugins/content/*
 !/plugins/content/nightlybuilds
+!/plugins/system
+/plugins/system/*
+!/plugins/system/devrouting
 /pulls
 /standards
 /templates/*

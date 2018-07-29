@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_GHMARKDOWNDISPLAY_DOCUMENT_VIEW_DEFAULT_TITLE" option="COM_GHMARKDOWNDISPLAY_DOCUMENT_VIEW_DEFAULT_OPTION">
+		<message>
+			<![CDATA[COM_GHMARKDOWNDISPLAY_DOCUMENT_VIEW_DEFAULT_DESC]]>
+		</message>
+	</layout>
+	<fields name="request">
+		<fieldset name="request">
+			<field
+				name="repository"
+				type="sql"
+				label="COM_GHMARKDOWNDISPLAY_MENU_DOCUMENT_FIELD_REPOSITORY_LABEL"
+				size="30"
+				required="true"
+				sql_select="id AS value, name AS text"
+				sql_from="#__ghmarkdowndisplay_repositories"
+				key_field="value"
+				value_field="text"
+			/>
+		</fieldset>
+	</fields>
+</metadata>
