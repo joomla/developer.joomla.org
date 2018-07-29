@@ -60,13 +60,6 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 						</th>
 					</tr>
 				</thead>
-				<tfoot>
-					<tr>
-						<td colspan="6">
-							<?php echo $this->pagination->getListFooter(); ?>
-						</td>
-					</tr>
-				</tfoot>
 				<tbody>
 					<?php foreach ($this->items as $i => $item) : ?>
 						<?php
@@ -108,6 +101,8 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				</tbody>
 			</table>
 		<?php endif; ?>
+
+		<?php echo $this->pagination->getListFooter(); ?>
 
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
