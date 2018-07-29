@@ -55,7 +55,7 @@ class GHMarkdownDisplayTableDocument extends Table
 
 		if (trim($this->alias) === '')
 		{
-			$this->alias = $this->title;
+			$this->alias = $this->name;
 		}
 
 		$this->alias = ApplicationHelper::stringURLSafe($this->alias);
