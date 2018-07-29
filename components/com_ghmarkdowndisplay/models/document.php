@@ -78,15 +78,32 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 	public function getItem($pk = null)
 	{
 		$pk = (!empty($pk)) ? $pk : (int) $this->getState($this->getName() . '.id');
+		$db = $this->getDbo();
 
 		if (!$pk)
 		{
-			$this->setError(Text::_('COM_GHMARKDOWNDISPLAY_ERROR_DOCUMENT_ID_REQUIRED'));
+			// The menu item configuration defines a repository without a document, if a repository ID is given try to find a PK
+			$repoId = (int) $this->getState($this->getName() . '.repository_id');
 
-			return false;
+			if ($repoId === 0)
+			{
+				$this->setError(Text::_('COM_GHMARKDOWNDISPLAY_ERROR_DOCUMENT_ID_REQUIRED'));
+
+				return false;
+			}
+
+			$pk = $db->setQuery(
+				$db->getQuery(true)
+					->select('a.id')
+					->from('#__ghmarkdowndisplay_documents AS a')
+					->join('LEFT', '#__ghmarkdowndisplay_sections AS s ON s.id = a.section_id')
+					->join('LEFT', '#__ghmarkdowndisplay_repositories AS r ON r.id = s.repository_id')
+					->where('r.id = ' . (int) $repoId)
+					->order('a.ordering ASC'),
+				0,
+				1
+			)->loadResult();
 		}
-
-		$db = $this->getDbo();
 
 		$query = $db->getQuery(true)
 			->select(
