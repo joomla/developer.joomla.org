@@ -94,4 +94,20 @@ class GHMarkdownDisplayModelDocument extends AdminModel
 
 		return $data;
 	}
+
+	/**
+	 * Prepare and sanitise the table data prior to saving.
+	 *
+	 * @param   GHMarkdownDisplayTableDocument  $table  A JTable object.
+	 *
+	 * @return  void
+	 */
+	protected function prepareTable($table)
+	{
+		// Reorder the documents within the section so the new document is first
+		if (empty($table->id))
+		{
+			$table->reorder('section_id = ' . (int) $table->section_id . ' AND published >= 0');
+		}
+	}
 }

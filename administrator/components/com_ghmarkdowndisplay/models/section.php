@@ -94,4 +94,20 @@ class GHMarkdownDisplayModelSection extends AdminModel
 
 		return $data;
 	}
+
+	/**
+	 * Prepare and sanitise the table data prior to saving.
+	 *
+	 * @param   GHMarkdownDisplayTableSection  $table  A JTable object.
+	 *
+	 * @return  void
+	 */
+	protected function prepareTable($table)
+	{
+		// Reorder the sections within the repository so the new section is first
+		if (empty($table->id))
+		{
+			$table->reorder('repository_id = ' . (int) $table->repository_id . ' AND published >= 0');
+		}
+	}
 }
