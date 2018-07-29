@@ -17,7 +17,7 @@ use Joomla\CMS\Router\Route;
 HTMLHelper::_('stylesheet', 'com_code/default.css', ['version' => 'auto', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
 ?>
 
-<div class="trackers<?php echo $this->pageclass_sfx?>">
+<div class="issue-trackers<?php echo $this->pageclass_sfx?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>
 	<div class="page-header">
 		<h1>
@@ -33,11 +33,10 @@ HTMLHelper::_('stylesheet', 'com_code/default.css', ['version' => 'auto', 'relat
 	</div>
 
 	<?php foreach ($this->items as $tracker) : ?>
-		<div class="trackers branch-<?php echo $tracker->tracker_id; ?> well">
-			<h3>
-				<a href="<?php echo Route::_('index.php?option=com_code&view=tracker&tracker_id=' . $tracker->jc_tracker_id); ?>" title="<?php echo Text::sprintf('COM_CODE_TRACKERS_VIEW_TRACKER', $tracker->title); ?>">
-					<?php echo $tracker->title; ?></a>
-			</h3>
+		<div class="issue-trackers__tracker">
+			<a href="<?php echo Route::_('index.php?option=com_code&view=tracker&tracker_id=' . $tracker->jc_tracker_id); ?>" title="<?php echo Text::sprintf('COM_CODE_TRACKERS_VIEW_TRACKER', $tracker->title); ?>">
+				<?php echo $tracker->title; ?>
+			</a>
 		</div>
 	<?php endforeach; ?>
 </div>

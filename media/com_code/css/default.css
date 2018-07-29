@@ -6,51 +6,57 @@
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-.trackers .well {
+.issue-trackers__tracker {
     background-color: #ffffff;
-    border-color: #2d8bdc;
-    border-left-width: 15px;
-    padding: 10px 19px;
+    border: 1px solid #2d8bdc;
+    border-left-width: 1rem;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1.25rem;
 }
 
-#issue-content h4 {
-    font-size: 15px;
+.issue-trackers__tracker a {
+    font-size: 1.2rem;
 }
 
-.issue-comment.well,
-.issue-commit.well {
+.issue-tags {
+    list-style-type: none;
+    font-size: .9rem;
+    margin-left: 0;
+}
+
+.issue-tags__tag {
+    display: inline-block;
+    border: 1px solid #bbbbbb;
+    background: #aaaaaa;
+    color: #fff;
+    padding: .5rem;
+    border-radius: .25rem;
+    font-weight: bold;
+}
+
+.issue-tags__tag:not(:first-of-type) {
+    margin-left: .5rem;
+}
+
+.issue-comment,
+.issue-commit {
     padding: 0;
     background: #fff;
-    margin: 0 1em 2em 1em;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e3e3e3;
 }
 
-span.comment-owner,
-span.commit-owner {
+.issue-comment__owner,
+.issue-commit__owner {
     background: #ddd;
-    padding: 1em;
+    padding: .75rem;
     display: block;
     font-weight: bold;
 }
 
-.issue-comment-details,
-.issue-commit-details {
-    padding: 1em;
-}
-
-.issue-tags ul {
-    list-style-type: none;
-    font-size: 14px;
-}
-
-.issue-tags ul li {
-    display: inline-block;
-    margin: 0 1em .5em 0;
-    border: 1px solid #bbbbbb;
-    background: #aaaaaa;
-    color: #fff;
-    padding: .5em;
-    border-radius: 3px;
-    font-weight: bold;
+.issue-comment__details,
+.issue-commit__details {
+    padding: .75rem;
 }
 
 /* Advanced search chosen overflow fixes  and button margin-bottom */
