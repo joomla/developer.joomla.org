@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 	<fieldset
+		name="authentication"
+		label="COM_GHMARKDOWNDISPLAY_FIELDSET_AUTHENTICATION_LABEL"
+		description="COM_GHMARKDOWNDISPLAY_FIELDSET_AUTHENTICATION_DESC"
+		>
+
+		<field
+			name="auth_method"
+			type="list"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_AUTH_METHOD_LABEL"
+			default=""
+			>
+			<option value="">JNONE</option>
+			<option value="credentials">COM_GHMARKDOWNDISPLAY_FIELD_AUTH_METHOD_OPTION_CREDENTIALS</option>
+			<option value="token">COM_GHMARKDOWNDISPLAY_FIELD_AUTH_METHOD_OPTION_TOKEN</option>
+		</field>
+
+		<!-- Note: Default username is a space to avoid browser autocomplete. -->
+		<field
+			name="github_user"
+			type="text"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_GITHUB_USER_LABEL"
+			autocomplete="off"
+			default=" "
+			showon="auth_method:credentials"
+		/>
+
+		<field
+			name="github_password"
+			type="password"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_GITHUB_PASSWORD_LABEL"
+			description="COM_GHMARKDOWNDISPLAY_FIELD_GITHUB_PASSWORD_DESC"
+			autocomplete="off"
+			default=""
+			showon="auth_method:credentials"
+		/>
+
+		<field
+			name="github_token"
+			type="text"
+			label="COM_GHMARKDOWNDISPLAY_FIELD_GITHUB_TOKEN_LABEL"
+			description="COM_GHMARKDOWNDISPLAY_FIELD_GITHUB_TOKEN_DESC"
+			showon="auth_method:token"
+		/>
+
+	</fieldset>
+
+	<fieldset
 		name="permissions"
 		label="JCONFIG_PERMISSIONS_LABEL"
 		description="JCONFIG_PERMISSIONS_DESC"
