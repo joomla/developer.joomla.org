@@ -53,7 +53,10 @@ class GHMarkdownDisplayController extends BaseController
 			if ($item !== false)
 			{
 				// Redirect to the canonical document URL, use the application to specify 301 since the controller API doesn't support this
-				Factory::getApplication()->redirect(Route::_('index.php?option=com_ghmarkdowndisplay&view=document&id=' . $item->id), 301);
+				Factory::getApplication()->redirect(
+					Route::_('index.php?option=com_ghmarkdowndisplay&view=document&id=' . $item->id . '&repository=' . $item->repository_id),
+					301
+				);
 
 				// Generally not needed since redirect shuts down the process, but ensures the below code never runs
 				return $this;

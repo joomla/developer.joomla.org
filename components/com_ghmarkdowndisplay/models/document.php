@@ -110,6 +110,7 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 				[
 					'a.*',
 					's.name AS section_name',
+					'r.id AS repository_id',
 					'r.repository_owner AS repository_owner',
 					'r.repository_name AS repository_name',
 				]
