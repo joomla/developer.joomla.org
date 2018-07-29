@@ -175,6 +175,9 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 
 			$html = $github->markdown->render($contents, 'gfm', $document->repository_owner . '/' . $document->repository_name);
 
+			// Convert plain tables to Bootstrap to suit our theming
+			$html = str_replace('<table>', '<table class="table table-condensed table-striped">', $html);
+
 			// TODO: Postprocessing links
 			return $html;
 		};
