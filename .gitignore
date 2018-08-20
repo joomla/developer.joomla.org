@@ -25,8 +25,6 @@
 !/components/com_code
 !/components/com_ghmarkdowndisplay
 !/components/com_trackerstats
-/glip/*
-!/glip/jenkins.php
 /icomoon
 /images
 /includes
@@ -57,12 +55,10 @@
 !/templates/joomla/css/
 /templates/joomla/css/*
 !/templates/joomla/css/custom.css
-!/templates/joomla/css/github-light.css
 !/templates/joomla/html/
 /templates/joomla/html/*
 !/templates/joomla/html/com_contact/
 !/templates/joomla/html/com_finder/
-!/templates/joomla/html/com_jmarkdown/
 !/templates/joomla/html/mod_articles_latest/
 !/templates/joomla/html/mod_breadcrumbs/
 /tests
