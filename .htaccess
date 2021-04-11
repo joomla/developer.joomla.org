@@ -211,10 +211,3 @@ RewriteRule .* index.php [L]
 	Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com https://*.google-analytics.com https://*.googletagmanager.com https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.joomla.org https://*.pingdom.net https://*.doubleclick.net https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://*.joomla.org https://hcaptcha.com https://*.hcaptcha.com https://fonts.googleapis.com https://stackpath.bootstrapcdn.com; connect-src 'self' https://*.joomla.org https://*.pingdom.net https://*.google-analytics.com https://*.doubleclick.net; frame-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://*.google.com https://www.googletagmanager.com https://www.youtube.com; font-src 'self' https://fonts.gstatic.com https://*.joomla.org; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.joomla.org https://*.pingdom.net https://*.doubleclick.net https://*.gstatic.com https://*.google.com https://*.googleapis.com; frame-ancestors 'self'; report-uri https://joomla.report-uri.com/r/t/csp/enforce"
 </IfModule>
 ##################### Security Header
-
-# php -- BEGIN cPanel-generated handler, do not edit
-# Set the “ea-php72” package as the default “PHP” programming language.
-<IfModule mime_module>
-  AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
-</IfModule>
-# php -- END cPanel-generated handler, do not edit
