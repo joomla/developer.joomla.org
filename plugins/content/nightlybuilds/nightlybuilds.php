@@ -113,8 +113,7 @@ class PlgContentNightlyBuilds extends CMSPlugin
 		$html = HTMLHelper::_('bootstrap.startAccordion', 'nightlyBuilds');
 
 		$currentVersion = Version::MAJOR_VERSION . '.' . Version::MINOR_VERSION;
-		$minor          = Version::MAJOR_VERSION . '.' . (Version::MINOR_VERSION + 1);
-		$major          = (Version::MAJOR_VERSION + 1) . '.0';
+		$minor          = (Version::MAJOR_VERSION + 1) . '.' . (Version::MINOR_VERSION + 1);
 
 		foreach ($packages as $branch => $files)
 		{
@@ -129,12 +128,8 @@ class PlgContentNightlyBuilds extends CMSPlugin
 
 					break;
 
-				case $major :
-					$updateserver = 'https://update.joomla.org/core/nightlies/next_major_list.xml';
-
-					break;
-
 				case $currentVersion :
+				case '4.0' :
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_patch_list.xml';
 
 					break;
@@ -153,14 +148,7 @@ class PlgContentNightlyBuilds extends CMSPlugin
 			 */
 			if (!$linkedBranch)
 			{
-				if ($branch == $currentVersion)
-				{
-					$linkedBranch = 'staging';
-				}
-				else
-				{
-					$linkedBranch = "$branch-dev";
-				}
+				$linkedBranch = "$branch-dev";
 			}
 
 			$html .= HTMLHelper::_('bootstrap.addSlide', 'nightlyBuilds', "Joomla! $branch", 'joomla-' . str_replace('.', '', $branch));
