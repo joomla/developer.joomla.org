@@ -112,9 +112,6 @@ class PlgContentNightlyBuilds extends CMSPlugin
 		// Start sliders for the releases
 		$html = HTMLHelper::_('bootstrap.startAccordion', 'nightlyBuilds');
 
-		$currentVersion = Version::MAJOR_VERSION . '.' . Version::MINOR_VERSION;
-		$minor          = (Version::MAJOR_VERSION + 1) . '.' . (Version::MINOR_VERSION + 1);
-
 		foreach ($packages as $branch => $files)
 		{
 			$commitSha    = file_exists("$nightlyDir/$branch.txt") ? trim(file_get_contents("$nightlyDir/$branch.txt")) : false;
@@ -123,13 +120,13 @@ class PlgContentNightlyBuilds extends CMSPlugin
 			// Set the updateserver per branch
 			switch ($branch)
 			{
-				case $minor :
+				case '4.1'	
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_minor_list.xml';
 
 					break;
 
-				case $currentVersion :
 				case '4.0' :
+				case '3.10' :
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_patch_list.xml';
 
 					break;
