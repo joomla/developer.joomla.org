@@ -169,7 +169,7 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 			// If an API token is set in the params, use it for authentication
 			if ($componentParams->get('github_token', ''))
 			{
-				$options->set('gh.token', $componentParams->get('github_token', ''));
+				$options->set('headers', ['Authorization' => 'token ' . $componentParams->get('github_token', '')]);
 			}
 			// Set the username and password if set in the params
 			elseif ($componentParams->get('github_user', '') && $componentParams->get('github_password'))
