@@ -64,7 +64,7 @@ class TrackerstatsControllerWiki extends BaseController
 				continue;
 			}
 
-			$workArray[$user->name]       = $user->recenteditcount;
+			$workArray[$user->name]       = $user->recentactions;
 			$totalEditsArray[$user->name] = $user->editcount;
 		}
 
