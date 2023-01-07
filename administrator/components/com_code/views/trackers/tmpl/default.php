@@ -21,9 +21,16 @@ HTMLHelper::_('behavior.core');
 
 Text::script('COM_CODE_TRACKERS_SAVE_SUCCESSFUL');
 Text::script('COM_CODE_TRACKERS_SAVE_ERROR');
+
+$version = new JVersion;
+
+if ($version->isCompatible('4.0.0')) {
+    $this->document->addScript(Uri::root() . '/media/vendor/tinymce/tinymce.min.js');
+} else {
+    $this->document->addScript(Uri::root() . '/media/editors/tinymce/tinymce.min.js');
+}
 ?>
 
-<script type="text/javascript" src="<?php echo Uri::root() . '/media/editors/tinymce/'; ?>tinymce.min.js"></script>
 <script type="text/javascript">
 tinymce.init({
     selector: "h3.editable",
