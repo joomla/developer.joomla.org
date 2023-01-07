@@ -12,7 +12,9 @@ defined('_JEXEC') or die;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 
-HTMLHelper::_('behavior.calendar');
+if (!$version->isCompatible('4.0')) {
+    HTMLHelper::_('behavior.calendar');
+}
 
 /** @var CodeModelTracker $model */
 $model = $this->getModel();
