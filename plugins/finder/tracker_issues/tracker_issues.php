@@ -163,7 +163,11 @@ class PlgFinderTracker_Issues extends FinderIndexerAdapter
 		// Build the necessary route and path information.
 		$item->url   = $this->getUrl($item->jc_issue_id, $this->extension, $this->layout);
 		$item->route = CodeHelperRoute::getIssueRoute($item->jc_issue_id);
-		$item->path  = FinderIndexerHelper::getContentPath($item->route);
+		$version     = new JVersion;
+
+		if (!$version->isCompatible('4.0.0')) {
+			$item->path  = FinderIndexerHelper::getContentPath($item->route);
+		}
 
 		// Set the language.
 		$item->language = FinderIndexerHelper::getDefaultLanguage();
