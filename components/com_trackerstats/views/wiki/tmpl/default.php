@@ -14,6 +14,7 @@ use Joomla\CMS\Router\Route;
 
 HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 
+HTMLHelper::_('jquery.framework');
 HTMLHelper::_('barchart.barchart', 'barchart', 'barchart', true);
 ?>
 <div class="trackerstats-wiki<?php echo $this->pageclass_sfx;?>">
