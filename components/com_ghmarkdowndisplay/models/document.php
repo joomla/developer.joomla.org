@@ -178,6 +178,8 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 				$options->set('api.password', $componentParams->get('github_password', ''));
 			}
 
+			$version = new JVersion;
+
 			if ($version->isCompatible('4.0.0')) {
 				JLoader::register(GHMarkdownGithubClient::class, JPATH_COMPONENT . '/github/client.php');
 				$github = new GHMarkdownGithubClient($options);
