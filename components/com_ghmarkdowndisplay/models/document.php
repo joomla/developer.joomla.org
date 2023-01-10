@@ -178,9 +178,16 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 				$options->set('api.password', $componentParams->get('github_password', ''));
 			}
 
-			$github = new JGithub($options);
+			$version = new JVersion;
 
-			$data = $github->repositories->contents->get($document->repository_owner, $document->repository_name, ltrim($document->file, '/'));
+			if ($version->isCompatible('4.0.0')) {
+				JLoader::register(GHMarkdownGithubClient::class, JPATH_COMPONENT . '/github/client.php');
+				$github = new GHMarkdownGithubClient($options);
+				$data = $github->getRepositoryContents($document->repository_owner, $document->repository_name, ltrim($document->file, '/'));
+			} else {
+				$github = new JGithub($options);
+				$data = $github->repositories->contents->get($document->repository_owner, $document->repository_name, ltrim($document->file, '/'));
+			}
 
 			switch ($data->encoding)
 			{
@@ -195,7 +202,11 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 					return false;
 			}
 
-			$html = $github->markdown->render($contents, 'gfm', $document->repository_owner . '/' . $document->repository_name);
+			if ($version->isCompatible('4.0.0')) {
+				$html = $github->renderMarkdown($contents, 'gfm', $document->repository_owner . '/' . $document->repository_name);
+			} else {
+				$html = $github->markdown->render($contents, 'gfm', $document->repository_owner . '/' . $document->repository_name);
+			}
 
 			// Convert plain tables to Bootstrap to suit our theming
 			$html = str_replace('<table>', '<table class="table table-condensed table-striped">', $html);
