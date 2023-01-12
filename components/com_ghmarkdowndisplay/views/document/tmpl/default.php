@@ -17,7 +17,7 @@ use Joomla\CMS\Version;
 /** @var GHMarkdownDisplayViewDocument $this */
 
 HTMLHelper::_('stylesheet', 'com_ghmarkdowndisplay/github-light.css', ['version' => '0.5.0', 'relative' => true, 'detectDebug' => (bool) JDEBUG]);
-throw new \RuntimeException('balh');
+
 $isJ4 = (new Version)->isCompatible('4.0.0');
 ?>
 <div class="github-documentation<?php echo $this->pageclass_sfx; ?>">
