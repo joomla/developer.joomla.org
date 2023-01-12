@@ -22,6 +22,7 @@
     list-style-type: none;
     font-size: .9rem;
     margin-left: 0;
+    padding-left: 0;
 }
 
 .issue-tags__tag {
