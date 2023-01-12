@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Version;
 
 $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));
@@ -22,7 +23,7 @@ HTMLHelper::_('behavior.core');
 Text::script('COM_CODE_TRACKERS_SAVE_SUCCESSFUL');
 Text::script('COM_CODE_TRACKERS_SAVE_ERROR');
 
-$version = new JVersion;
+$version = new Version;
 
 if ($version->isCompatible('4.0.0')) {
     $this->document->addScript(Uri::root() . '/media/vendor/tinymce/tinymce.min.js');
