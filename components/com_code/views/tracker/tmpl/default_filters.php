@@ -76,7 +76,7 @@ $model = $this->getModel();
                             'filter_date_field',
                             [
                                 'onchange' => 'document.forms.trackerForm.submit();',
-                                'class'    => $isJ4 ? 'form-select form-control-sm' : 'input-small',
+                                'class'    => $isJ4 ? 'form-select w-25 form-control-sm' : 'input-small',
                             ],
                             'value',
                             'text',
@@ -161,7 +161,7 @@ $model = $this->getModel();
                             'text',
                             $model->getState('issue.tag_id')
                         ); ?>
-                        <button type="submit" class="btn hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
+                        <button type="submit" class="btn <?php echo $isJ4 ? 'btn-secondary' : ''; ?> hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
                             <span aria-hidden="true" class="<?php echo $isJ4 ? 'fa fa-search' : 'icon-search'?>"></span>
                         </button>
                     </div>
@@ -187,7 +187,7 @@ $model = $this->getModel();
                             $model->getState('issue.submitter_id_include')
                         ); ?>
                         <input type="text" <?php echo $isJ4 ? 'class="form-control"' : '' ?> name="filter_submitter_name" id="filter_submitter_name" value="<?php echo $this->escape($model->getState('issue.submitter_name')) ?>"/>
-                        <button type="submit" class="btn hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
+                        <button type="submit" class="btn <?php echo $isJ4 ? 'btn-secondary' : ''; ?> hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
                             <span aria-hidden="true" class="<?php echo $isJ4 ? 'fa fa-search' : 'icon-search'?>"></span>
                         </button>
                     </div>
@@ -211,7 +211,7 @@ $model = $this->getModel();
                             $model->getState('issue.closer_id_include')
                         ); ?>
                         <input type="text" <?php echo $isJ4 ? 'class="form-control"' : '' ?> name="filter_closer_name" id="filter_closer_name" value="<?php echo $this->escape($model->getState('issue.closer_name')) ?>"/>
-                        <button type="submit" class="btn hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
+                        <button type="submit" class="btn <?php echo $isJ4 ? 'btn-secondary' : ''; ?> hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
                             <span aria-hidden="true" class="<?php echo $isJ4 ? 'fa fa-search' : 'icon-search'?>"></span>
                         </button>
                     </div>
