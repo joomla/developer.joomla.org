@@ -11,6 +11,9 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Version;
+
+$version = new Version;
 
 if (!$version->isCompatible('4.0')) {
     HTMLHelper::_('behavior.calendar');
