@@ -123,7 +123,7 @@ $this->document->addScriptDeclaration($orderingJavascript, 'text/javascript');
 
 	<?php if (!empty($this->items)) : ?>
 		<?php if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->page->pagesTotal > 1)) : ?>
-		<div class="pagination">
+		<div class="<?php echo $isJ4 ? 'com-code-tracker__pagination' : 'pagination' ?>">
 			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
 				<p class="counter <?php echo $isJ4 ? 'float-end' : 'pull-right' ?>">
 					<?php echo $this->page->getPagesCounter(); ?>
