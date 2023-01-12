@@ -11,6 +11,9 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Version;
+
+$isJ4 = (new Version)->isCompatible('4.0.0');
 
 // Load the CSS stylesheets
 HTMLHelper::_('stylesheet', 'com_code/default.css', ['version' => 'auto', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
@@ -33,12 +36,15 @@ HTMLHelper::_('stylesheet', 'com_code/default.css', ['version' => 'auto', 'relat
 
 	<div class="issue__content">
 		<h3><?php echo Text::_('COM_CODE_ISSUE_SUMMARY'); ?></h3>
-		<div class="row-fluid">
-			<div class="span9">
+		<div class="<?php echo $isJ4 ? 'row' : 'row-fluid'?>">
+			<div class="<?php echo $isJ4 ? 'col-md-9' : 'span9'?>">
 				<?php echo nl2br($this->item->description); ?>
 			</div>
-			<aside class="span3 well">
-				<dl>
+			<aside class="<?php echo $isJ4 ? 'col-md-3 card' : 'span3 well'?>">
+                <?php if ($isJ4) : ?>
+                <div class="card-body">
+                <?php endif ?>
+                <dl>
 					<dt><?php echo Text::_('COM_CODE_ISSUE_OPENED_ON'); ?></dt>
 					<dd><?php echo Text::sprintf('COM_CODE_ISSUE_OPENED_ON_INFO', HTMLHelper::_('date', $this->item->created_date, 'j M Y, G:i'), $this->item->created_by_name); ?></dd>
 
@@ -50,7 +56,10 @@ HTMLHelper::_('stylesheet', 'com_code/default.css', ['version' => 'auto', 'relat
 					<dt><?php echo Text::_('COM_CODE_ISSUE_STATUS'); ?></dt>
 					<dd><?php echo $this->item->status_name; ?></dd>
 				</dl>
-			</aside>
+                <?php if ($isJ4) : ?>
+                </div>
+                <?php endif ?>
+            </aside>
 		</div>
 
 		<?php if (!empty($this->tags)) : ?>
