@@ -14,6 +14,7 @@ use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\ItemModel;
+use Joomla\CMS\Version;
 use Joomla\Registry\Registry;
 
 /**
@@ -178,7 +179,7 @@ class GHMarkdownDisplayModelDocument extends ItemModel
 				$options->set('api.password', $componentParams->get('github_password', ''));
 			}
 
-			$version = new JVersion;
+			$version = new Version;
 
 			if ($version->isCompatible('4.0.0')) {
 				JLoader::register(GHMarkdownGithubClient::class, JPATH_COMPONENT . '/github/client.php');
