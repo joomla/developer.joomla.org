@@ -76,7 +76,7 @@ $model = $this->getModel();
                             'filter_date_field',
                             [
                                 'onchange' => 'document.forms.trackerForm.submit();',
-                                'class'    => $isJ4 ? 'form-select w-25 form-control-sm' : 'input-small',
+                                'class'    => $isJ4 ? 'form-select form-control-sm' : 'input-small',
                             ],
                             'value',
                             'text',
