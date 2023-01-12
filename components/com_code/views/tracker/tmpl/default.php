@@ -9,28 +9,33 @@
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Version;
 
 // Enable Chosen
-HTMLHelper::_('formbehavior.chosen');
+HTMLHelper::_('formbehavior.chosen', '.advancedSelect');
 
 // Load the CSS Stylesheet
 HTMLHelper::_('stylesheet', 'com_code/default.css', ['version' => 'auto', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
+
+$isJ4 = (new Version)->isCompatible('4.0.0');
+$toggleClass = $isJ4 ? 'show' : 'overflow';
+$toggleElementType = $isJ4 ? 'svg' : 'span';
+$toggleElement = $isJ4 ? 'fa-plus fa-minus' : 'icon-plus icon-minus';
 
 // Toggle advanced search elements
 $toggleAdvSearch = <<< JS
 	jQuery(document).ready(function () {
 	    jQuery('#adv-search-button').click(function () {
-	        jQuery(this).find('i').toggleClass('icon-plus icon-minus');
-	        jQuery('#filters-advanced').toggleClass('overflow');
+	        jQuery(this).find('$toggleElementType').toggleClass('$toggleElement');
+	        jQuery('#filters-advanced').toggleClass('$toggleClass');
 	    });
 	});
 JS;
 
-Factory::getApplication()->getDocument()->addScriptDeclaration($toggleAdvSearch, 'text/javascript');
+$this->document->addScriptDeclaration($toggleAdvSearch, 'text/javascript');
 
 // Required to get the ordering working
 $orderingJavascript = <<< JS
@@ -39,7 +44,7 @@ $orderingJavascript = <<< JS
 	};
 JS;
 
-Factory::getApplication()->getDocument()->addScriptDeclaration($orderingJavascript, 'text/javascript');
+$this->document->addScriptDeclaration($orderingJavascript, 'text/javascript');
 ?>
 
 <div class="issue-tracker<?php echo $this->pageclass_sfx?>">
@@ -120,7 +125,7 @@ Factory::getApplication()->getDocument()->addScriptDeclaration($orderingJavascri
 		<?php if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->page->pagesTotal > 1)) : ?>
 		<div class="pagination">
 			<?php if ($this->params->def('show_pagination_results', 1)) : ?>
-				<p class="counter pull-right">
+				<p class="counter <?php echo $isJ4 ? 'float-end' : 'pull-right' ?>">
 					<?php echo $this->page->getPagesCounter(); ?>
 				</p>
 			<?php endif; ?>
