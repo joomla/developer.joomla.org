@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Version;
 
 JLoader::register('FinderIndexerAdapter', JPATH_ADMINISTRATOR . '/components/com_finder/helpers/indexer/adapter.php');
 
@@ -163,7 +164,7 @@ class PlgFinderTracker_Issues extends FinderIndexerAdapter
 		// Build the necessary route and path information.
 		$item->url   = $this->getUrl($item->jc_issue_id, $this->extension, $this->layout);
 		$item->route = CodeHelperRoute::getIssueRoute($item->jc_issue_id);
-		$version     = new JVersion;
+		$version     = new Version;
 
 		if (!$version->isCompatible('4.0.0')) {
 			$item->path  = FinderIndexerHelper::getContentPath($item->route);
