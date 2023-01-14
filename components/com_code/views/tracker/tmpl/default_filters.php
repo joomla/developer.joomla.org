@@ -17,7 +17,7 @@ $version = new Version;
 $isJ4 = (new Version)->isCompatible('4.0.0');
 
 if ($isJ4) {
-    HTMLHelper::_('bootstrap.tooltip');
+    HTMLHelper::_('bootstrap.tooltip', '.hasTooltip');
 } else {
     HTMLHelper::_('behavior.calendar');
 }
