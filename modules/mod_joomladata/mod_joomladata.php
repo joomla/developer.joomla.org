@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Http\HttpFactory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Version;
 
 /**
  * Module variables
@@ -26,6 +27,13 @@ use Joomla\CMS\Helper\ModuleHelper;
  * @var   \Joomla\CMS\Language\Language           $lang      The active JLanguage singleton
  * @var   string                                  $content   Module output content
  */
+
+$version = new Version();
+
+// Only defined in 3.x
+if ($version->isCompatible('4.0.0')) {
+    $lang = $app->getLanguage();
+}
 
 // Include the helper
 JLoader::register('JoomlaStatChartsHelper', __DIR__ . '/helper.php');
