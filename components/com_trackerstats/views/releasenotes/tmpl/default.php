@@ -13,6 +13,10 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Version;
+
+$version = new Version;
+$isJ4 = $version->isCompatible('4.0.0');
 ?>
 <div class="trackerstats-releasenotes<?php echo $this->pageclass_sfx;?>">
 	<?php if ($this->params->get('show_page_heading')) : ?>
@@ -25,18 +29,19 @@ use Joomla\CMS\Uri\Uri;
 		<form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post" name="adminForm" >
 			<fieldset class="filters btn-toolbar clearfix">
 				<div class="btn-group">
-					<label class="filter-search-lbl element-invisible" for="filter-search">
-						<?php echo Text::_('COM_CONTENT_' . $this->params->get('filter_field') . '_FILTER_LABEL') . '&#160;'; ?>
+					<label class="filter-search-lbl <?php echo $isJ4 ? 'visually-hidden' : 'element-invisible'; ?>" for="filter-search">
+						<?php echo Text::_('COM_TRACKERSTATS_RELEASENOTES_FILTER_TITLE') . '&#160;'; ?>
 					</label>
-					<div class="input-append">
-						<input type="text" name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')) ?>" placeholder="Filter by title..." />
-						<button type="submit" class="btn hasTooltip" title="<?php echo HTMLHelper::_('tooltiptext', 'JSEARCH_FILTER_SUBMIT'); ?>">
-							<i class="icon-search"></i>
+					<div class="input-<?php echo $isJ4 ? 'group' : 'append'; ?>">
+						<input type="text" <?php echo $isJ4 ? 'class="form-control"' : ''; ?> name="filter-search" id="filter-search" value="<?php echo $this->escape($this->state->get('list.filter')) ?>" placeholder="<?php echo Text::_('COM_TRACKERSTATS_RELEASENOTES_FILTER_TITLE_PLACEHOLDER') ?>" />
+						<button type="submit" class="btn <?php echo $isJ4 ? ' btn-secondary' : ''; ?>">
+							<span class="icon-search" aria-hidden="true"></span>
+                            <span class="<?php echo $isJ4 ? 'visually-hidden' : 'element-invisible'; ?>"><?php echo Text::_('JSEARCH_FILTER_SUBMIT'); ?></span>
 						</button>
 					</div>
 				</div>
-				<div class="btn-group pull-right">
-					<label for="limit" class="element-invisible">
+				<div class="<?php echo $isJ4 ? 'ms-auto' : 'btn-group pull-right'; ?>">
+					<label for="limit" class="<?php echo $isJ4 ? 'visually-hidden' : 'element-invisible'; ?>">
 						<?php echo Text::_('JGLOBAL_DISPLAY_NUM'); ?>
 					</label>
 					<?php echo $this->pagination->getLimitBox(); ?>
@@ -84,9 +89,9 @@ use Joomla\CMS\Uri\Uri;
 
 		<?php if (!empty($this->items)) : ?>
 			<?php if (($this->params->def('show_pagination', 2) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->pagesTotal > 1)) : ?>
-			<div class="pagination">
+			<div class="<?php echo $isJ4 ? 'trackerstats-releasenotes-pagination' : 'pagination'; ?>">
 				<?php if ($this->params->def('show_pagination_results', 1)) : ?>
-					<p class="counter pull-right">
+					<p class="counter <?php echo $isJ4 ? 'float-end' : 'pull-right'; ?>">
 						<?php echo $this->pagination->getPagesCounter(); ?>
 					</p>
 				<?php endif; ?>
