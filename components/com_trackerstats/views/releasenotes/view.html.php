@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Version;
 
 // Load the com_code route helper
 JLoader::register('CodeHelperRoute', JPATH_ROOT . '/components/com_code/helpers/route.php');
@@ -47,9 +48,18 @@ class TrackerstatsViewReleasenotes extends HtmlView
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			JError::raiseError(500, implode("\n", $errors));
+            $version = new Version;
 
-			return false;
+            if ($version->isCompatible('4.0.0'))
+            {
+                throw new \Joomla\CMS\MVC\View\GenericDataException(implode("\n", $errors), 500);
+            }
+            else
+            {
+                JError::raiseError(500, implode("\n", $errors));
+
+                return false;
+            }
 		}
 
 		$this->state      = $state;

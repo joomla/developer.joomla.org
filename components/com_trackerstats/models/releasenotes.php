@@ -98,7 +98,7 @@ class TrackerstatsModelReleasenotes extends ListModel
 
 		if ($menu = $app->getMenu()->getActive())
 		{
-			$menuParams->loadString($menu->params);
+			$menuParams->loadString($menu->getParams());
 		}
 
 		$mergedParams = clone $menuParams;
