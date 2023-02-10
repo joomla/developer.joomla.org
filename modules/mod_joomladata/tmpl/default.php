@@ -30,7 +30,7 @@ use Joomla\CMS\HTML\HTMLHelper;
  */
 
 // Require our Chart.js source
-HTMLHelper::_('script', 'mod_joomladata/Chart.js', ['version' => '2.1.6', 'relative' => true, 'detectDebug' => (bool) JDEBUG]);
+HTMLHelper::_('script', 'mod_joomladata/Chart.js', ['version' => '2.9.4', 'relative' => true, 'detectDebug' => (bool) JDEBUG]);
 
 // Figure out what type of chart we're building
 $chartType = $params->get('chartType', 'Doughnut');
