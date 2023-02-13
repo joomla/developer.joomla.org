@@ -18,6 +18,7 @@ $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));
 
 // For rendering success and failure messages on ajax submmission
+HTMLHelper::_('jquery.framework');
 HTMLHelper::_('behavior.core');
 
 Text::script('COM_CODE_TRACKERS_SAVE_SUCCESSFUL');
