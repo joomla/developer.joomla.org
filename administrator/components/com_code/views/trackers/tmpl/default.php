@@ -25,8 +25,9 @@ Text::script('COM_CODE_TRACKERS_SAVE_SUCCESSFUL');
 Text::script('COM_CODE_TRACKERS_SAVE_ERROR');
 
 $version = new Version;
+$isJoomla4 = $version->isCompatible('4.0.0');
 
-if ($version->isCompatible('4.0.0')) {
+if ($isJoomla4) {
     $this->document->addScript(Uri::root() . '/media/vendor/tinymce/tinymce.min.js');
 } else {
     $this->document->addScript(Uri::root() . '/media/editors/tinymce/tinymce.min.js');
@@ -92,28 +93,30 @@ function saveData()
 }
 </script>
 
-<div id="j-sidebar-container" class="span2">
-	<?php echo $this->sidebar; ?>
-</div>
-<div id="j-main-container" class="span10">
-	<?php if (empty($this->trackers)) : ?>
-		<div class="alert alert-no-items">
-			<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
-		</div>
-	<?php else : ?>
-		<p><?php echo JText::_('COM_CODE_TRACKERS_HOW_TO_EDIT'); ?></p>
-		<form class="adminForm">
-			<div class="trackers">
-				<?php foreach ($this->trackers as $tracker) : ?>
-					<div class="tracker" data-tracker-id="<?php echo $tracker->tracker_id; ?>" data-tracker-jc-id="<?php echo $tracker->jc_tracker_id; ?>">
-						<h3 class="editable"><?php echo $tracker->title; ?></h3>
-						<div class="tracker-description editable">
-							<?php echo $tracker->description; ?>
-						</div>
-					</div>
-				<?php endforeach; ?>
-			</div>
-			<button type="submit" class="btn btn-danger" onClick="return saveData();">Save tracker information</button>
-		</form>
-	<?php endif;?>
+<div class="<?php echo $isJoomla4 ? 'row' : 'row-fluid'; ?>">
+    <div id="j-sidebar-container" class="<?php echo $isJoomla4 ? 'col-md-2' : 'span2'; ?>">
+        <?php echo $this->sidebar; ?>
+    </div>
+    <div id="j-main-container" class="<?php echo $isJoomla4 ? 'col-md-10' : 'span10'; ?>">
+        <?php if (empty($this->trackers)) : ?>
+            <div class="alert alert-no-items">
+                <?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
+            </div>
+        <?php else : ?>
+            <p><?php echo JText::_('COM_CODE_TRACKERS_HOW_TO_EDIT'); ?></p>
+            <form class="adminForm">
+                <div class="trackers">
+                    <?php foreach ($this->trackers as $tracker) : ?>
+                        <div class="tracker" data-tracker-id="<?php echo $tracker->tracker_id; ?>" data-tracker-jc-id="<?php echo $tracker->jc_tracker_id; ?>">
+                            <h3 class="editable"><?php echo $tracker->title; ?></h3>
+                            <div class="tracker-description editable">
+                                <?php echo $tracker->description; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <button type="submit" class="btn btn-danger" onClick="return saveData();">Save tracker information</button>
+            </form>
+        <?php endif;?>
+    </div>
 </div>

@@ -8,10 +8,15 @@
  */
 
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Language\Text;
 ?>
 
-<div id="j-sidebar-container" class="span2">
-	<?php echo $this->sidebar; ?>
-</div>
-<div id="j-main-container" class="span10">
+<div class="row">
+    <div id="j-sidebar-container" class="col-md-2">
+        <?php echo $this->sidebar; ?>
+    </div>
+    <div id="j-main-container" class="col-md-10">
+        <?php echo Text::_('COM_CODE_XML_DESCRIPTION'); ?>
+    </div>
 </div>
