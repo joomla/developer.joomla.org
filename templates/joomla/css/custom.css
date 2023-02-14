@@ -25,6 +25,15 @@
     letter-spacing: 1px;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 979px){
+    /** On most tablets this makes the "Review Tracker" text appear on one line **/
+    #mod-custom125 .start .btn-primary {
+        padding: 19px 7px;
+        letter-spacing: 0;
+        font-size: 0.8rem;
+    }
+}
+
 .lead {
     font-family: "Open Sans", sans-serif;
 }
@@ -513,50 +522,13 @@ h5.roadmap {
     animation: 3s linear 0s normal none infinite running shakennotstirred;
 }
 
-/*Responsive Sandra*/
-/*2017*/
-@media only screen and (min-width: 768px) and (max-width: 979px){
-    /** On most tablets this makes the "Review Tracker" text appear on one line **/
-    .start .btn-primary {
-        padding: 19px 7px;
-        letter-spacing: 0;
-        font-size: 0.8rem;
-    }
-}
-
-@media only screen and (min-width: 481px) and (max-width: 767px){
-    .contact-form fieldset  {
-        margin-left: -15px;
-        -webkit-transform: scale(0.90);
-        -ms-transform: scale(0.90);
-        transform: scale(0.90);
-    }
-
-    .form-horizontal .form-actions {
-        width: 50%;
-    }
-}
+/* End jQuery 2015 Hackathon */
 
 @media only screen and (max-width: 480px){
-    #jform_captcha,.contact-form fieldset  {
-        margin-left: -15px;
-        -webkit-transform: scale(0.90);
-        -ms-transform: scale(0.90);
-        transform: scale(0.90);
-    }
-
+    /* Wraps the copy email field onto a single line for small screens */
     #jform_contact_email_copy-lbl {
-        width: auto;
         margin-right: 10px;
         float: left;
-    }
-
-    .form-horizontal #jform_contact_email_copy {
-        width: auto;
-        float: left;
-    }
-    .form-horizontal legend,.form-horizontal .form-actions {
-        width: 80%;
     }
 }
 
