@@ -14,12 +14,10 @@
 }
 
 #mod-custom125 .start .caption {
-    padding: 10px;
-    padding-top: 0;
+    padding: 0 10px 10px 10px;
 }
 
 #mod-custom125 .start .btn {
-    border: none;
     margin-top: 10px;
 }
 
