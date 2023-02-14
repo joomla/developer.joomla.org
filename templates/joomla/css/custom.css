@@ -1,35 +1,30 @@
-/*Sandra - Homepage 2017*/
-.pull-none.item-image {
-    margin: 9px 0;
+/* Homepage */
+#mod-custom125 {
+  margin-bottom: 2.75rem;
 }
 
-.start .col-md-4 {
-    margin-top: 20px;
-    margin-bottom: 20px;
+#mod-custom125 #startcontainer {
+    padding-top: 20px;
 }
 
-.start .col-md-4 .start-item {
+#mod-custom125 .start .col-md-4 .start-item {
     box-shadow: 0 5px 10px -10px rgba(0, 0, 0, 1);
     border: 1px solid #ddd;
     height: 100%
 }
 
-.start .col-md-4 img {
-    padding: 4px;
-}
-
-.start .caption {
+#mod-custom125 .start .caption {
     padding: 10px;
+    padding-top: 0;
 }
 
-.start .btn {
+#mod-custom125 .start .btn {
     border: none;
     margin-top: 10px;
 }
 
-.start .btn.btn-primary {
+#mod-custom125 .start .btn.btn-primary {
     letter-spacing: 1px;
-    margin-top: 0;
 }
 
 .lead {
@@ -39,11 +34,6 @@
 .itemid-435 h2 {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #eee;
-}
-
-/* Extra home page gap before the blog articles start */
-#mod-custom125 {
-    margin-bottom: 1.5rem;
 }
 
 /*2017 roadmap*/
@@ -161,8 +151,8 @@ h5.roadmap {
 
 /* BPF Image alignment (Temporary for J4 migration - should be moved to classes in the article) */
 .pbf img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 /* jQuery Hackathon Article */
@@ -588,17 +578,4 @@ h5.roadmap {
 
 .com_code.view-tracker .form-inline select, .com_code.view-tracker .form-inline input {
     display: inline-block;
-}
-
-/* MediaWiki Graph - Reset jqPlot to BS Defaults */
-.jqplot-target {
-    font-family: inherit;
-    color: inherit;
-}
-table.jqplot-table-legend, table.jqplot-cursor-legend {
-    background-color: rgba(var(--bs-body-bg-rgb),0.6);
-}
-.jqplot-highlighter-tooltip {
-    background: none;
-    border: none;
 }
