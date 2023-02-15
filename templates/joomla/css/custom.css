@@ -44,10 +44,6 @@
 }
 
 /*2017 roadmap*/
-.article-index {
-    padding-left: 1em;
-}
-
 .nav-tabs .nav-link.disabled, .nav-tabs .nav-link:disabled {
     border-color: var(--bs-nav-tabs-border-color);
 }
