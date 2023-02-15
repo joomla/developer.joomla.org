@@ -68,7 +68,7 @@ $model = $this->getModel();
 
             <div class="<?php echo $isJ4 ? 'col-md-6' : 'span6'?>">
                 <div class="control-group">
-                    <label class="control-label" for="filter_date_field">
+                    <label class="<?php echo $isJ4 ? 'form-label' : 'control-label'?>" for="filter_date_field">
                         <?php echo Text::_('COM_CODE_TRACKER_FILTER_DATE'); ?>
                     </label>
                     <div class="controls">
