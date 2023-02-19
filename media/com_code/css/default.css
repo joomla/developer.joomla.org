@@ -74,7 +74,7 @@ button#adv-search-button {
 	vertical-align: top;
 }
 
-.form-inline .field-calendar {
+#tracker-filters.form-inline select, #tracker-filters.form-inline input, .form-inline .field-calendar {
     display: inline-block;
 }
 
@@ -84,8 +84,4 @@ button#adv-search-button {
 
 #tracker-filters input, #tracker-filters select {
     width: 220px;
-}
-
-#tracker-filters.form-inline select, #tracker-filters.form-inline input {
-    display: inline-block;
 }
