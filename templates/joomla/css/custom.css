@@ -1,10 +1,25 @@
+/* Generic changes that should be in template */
+.lead {
+    font-family: "Open Sans", sans-serif;
+}
+
+.nav-tabs.flex-column .nav-link.disabled, .nav-tabs.flex-column .nav-link:disabled {
+    border-color: var(--bs-nav-tabs-border-color);
+}
+
+@media(prefers-color-scheme: light) {
+    .nav-tabs.flex-column .nav-link.disabled, .nav-tabs.flex-column .nav-link:disabled {
+        background: #eee;
+    }
+}
+
 /* Homepage */
 #mod-custom125 {
-  margin-bottom: 2.75rem;
+    margin-bottom: 2.75rem;
 }
 
 #mod-custom125 #startcontainer {
-    padding-top: 20px;
+    padding-top: 1.25rem;
 }
 
 #mod-custom125 .start .col-md-4 .start-item {
@@ -34,26 +49,13 @@
     }
 }
 
-.lead {
-    font-family: "Open Sans", sans-serif;
-}
-
 .itemid-435 h2 {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #eee;
 }
+/* End Homepage */
 
-/*2017 roadmap*/
-.nav-tabs .nav-link.disabled, .nav-tabs .nav-link:disabled {
-    border-color: var(--bs-nav-tabs-border-color);
-}
-
-@media(prefers-color-scheme: light) {
-    .nav-tabs .nav-link.disabled, .nav-tabs .nav-link:disabled {
-        background: #eee;
-    }
-}
-
+/*Roadmap Article*/
 [id="3x"]:target,
 [id="37"]:target,
 [id="38"]:target,
@@ -104,36 +106,7 @@ h4.roadmap {
     padding: 0 0 14px;
 }
 
-/*2017 Newsletter*/
-.acyreceive input {
-    float: left;
-    margin-right: 5px;
-}
-
-.acy label {
-    float: left;
-    margin-right: 10px;
-    padding-top: 5px;
-}
-
-.acy input {
-    box-shadow: none;
-    border-radius : 0;
-}
-
-.acyconsent input[type="checkbox"] {
-    float: left;
-    margin-right: 10px;
-    margin-top: 2px;
-}
-
-/*End 2017 changes*/
-
-/* BPF Image alignment (Temporary for J4 migration - should be moved to classes in the article) */
-.pbf img {
-  max-width: 100%;
-  height: auto;
-}
+/*End Roadmap Article changes*/
 
 /* jQuery Hackathon Article */
 .jq15 {
@@ -402,6 +375,13 @@ h4.roadmap {
         width: 160px;
     }
 }
+/* End jQuery 2015 Hackathon */
+
+/* BPF Image alignment (Temporary for J4 migration - should be moved to classes in the article) */
+.pbf img {
+    max-width: 100%;
+    height: auto;
+}
 
 .effectFade img {
     transition: transform 0.5s ease-in-out 0s;
@@ -495,8 +475,6 @@ h4.roadmap {
     animation: 3s linear 0s normal none infinite running shakennotstirred;
 }
 
-/* End jQuery 2015 Hackathon */
-
 @media only screen and (max-width: 480px){
     /* Wraps the copy email field onto a single line for small screens */
     #jform_contact_email_copy-lbl {
@@ -505,6 +483,7 @@ h4.roadmap {
     }
 }
 
+/* We should migrate to float-sm-start and float-sm-end but kept this as is for now to ease the j4 migration */
 @media only screen and (max-width: 320px){
     img.float-start,img.float-end {
         float: none;
