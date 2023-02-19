@@ -78,7 +78,7 @@ $model = $this->getModel();
                             'filter_date_field',
                             [
                                 'onchange' => 'document.forms.trackerForm.submit();',
-                                'class'    => $isJ4 ? 'form-select form-control-sm' : 'input-small',
+                                'class'    => $isJ4 ? 'form-select form-select-narrow' : 'input-small',
                             ],
                             'value',
                             'text',
@@ -86,10 +86,10 @@ $model = $this->getModel();
                         ); ?>
                         <input type="hidden" name="filter_date_filtering" value="range" />
 
-                        <?php echo HTMLHelper::_('calendar', $model->getState('issue.start_date_range'), 'filter_start_date_range', 'filter_start_date_range', '%Y-%m-%d', ['class' => $isJ4 ? 'form-control-sm' : 'input-small']); ?>
-                        <?php echo HTMLHelper::_('calendar', $model->getState('issue.end_date_range'), 'filter_end_date_range', 'filter_end_date_range', '%Y-%m-%d', ['class' => $isJ4 ? 'form-control-sm' : 'input-small']); ?>
+                        <?php echo HTMLHelper::_('calendar', $model->getState('issue.start_date_range'), 'filter_start_date_range', 'filter_start_date_range', '%Y-%m-%d', ['class' => $isJ4 ? 'form-control-narrow' : 'input-small']); ?>
+                        <?php echo HTMLHelper::_('calendar', $model->getState('issue.end_date_range'), 'filter_end_date_range', 'filter_end_date_range', '%Y-%m-%d', ['class' => $isJ4 ? 'form-control-narrow' : 'input-small']); ?>
 
-                        <button type="submit" class="btn <?php echo $isJ4 ? 'btn-secondary' : ''; ?> hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
+                        <button type="submit" class="btn <?php echo $isJ4 ? 'btn-secondary align-top' : ''; ?> hasTooltip" title="<?php echo HTMLHelper::_('tooltipText', 'JSEARCH_FILTER_SUBMIT'); ?>">
                             <span aria-hidden="true" class="<?php echo $isJ4 ? 'fa fa-search' : 'icon-search'?>"></span>
                         </button>
                     </div>
@@ -113,7 +113,7 @@ $model = $this->getModel();
                             'filter_status_id_include',
                             [
                                 'onchange' => 'document.forms.trackerForm.submit();',
-                                'class'    => $isJ4 ? 'form-select form-control-sm' : 'input-small'
+                                'class'    => $isJ4 ? 'form-select form-select-narrow' : 'input-small'
                             ],
                             'value',
                             'text',
@@ -145,7 +145,7 @@ $model = $this->getModel();
                             'filter_tag_id_include',
                             [
                                 'onchange' => 'document.forms.trackerForm.submit();',
-                                'class'    => $isJ4 ? 'form-select form-control-sm' : 'input-small'
+                                'class'    => $isJ4 ? 'form-select form-select-narrow' : 'input-small'
                             ],
                             'value',
                             'text',
@@ -182,7 +182,7 @@ $model = $this->getModel();
                             'filter_submitter_id_include',
                             [
                                 'onchange' => 'document.forms.trackerForm.submit();',
-                                'class'    => $isJ4 ? 'form-select form-control-sm' : 'input-small'
+                                'class'    => $isJ4 ? 'form-select form-select-narrow' : 'input-small'
                             ],
                             'value',
                             'text',
@@ -206,7 +206,7 @@ $model = $this->getModel();
                             'filter_closer_id_include',
                             [
                                 'onchange' => 'document.forms.trackerForm.submit();',
-                                'class'    => $isJ4 ? 'form-select form-control-sm' : 'input-small'
+                                'class'    => $isJ4 ? 'form-select form-select-narrow' : 'input-small'
                             ],
                             'value',
                             'text',

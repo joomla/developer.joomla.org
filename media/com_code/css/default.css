@@ -78,7 +78,7 @@ button#adv-search-button {
     display: inline-block;
 }
 
-#tracker-filters .form-control-sm {
+#tracker-filters .form-select-narrow, #tracker-filters .form-control-narrow {
     width: 90px;
 }
 
@@ -86,6 +86,6 @@ button#adv-search-button {
     width: 220px;
 }
 
-#tracker-filters .form-inline select, #tracker-filters .form-inline input {
+#tracker-filters.form-inline select, #tracker-filters.form-inline input {
     display: inline-block;
 }

@@ -17,19 +17,21 @@ use Joomla\CMS\Version;
 // Enable Chosen
 HTMLHelper::_('formbehavior.chosen', '.advancedSelect');
 
+// jQuery for the class toggle
+HTMLHelper::_('jquery.framework');
+
 // Load the CSS Stylesheet
 HTMLHelper::_('stylesheet', 'com_code/default.css', ['version' => 'auto', 'relative' => true, 'detectDebug' => (bool) JDEBUG], []);
 
 $isJ4 = (new Version)->isCompatible('4.0.0');
 $toggleClass = $isJ4 ? 'show' : 'overflow';
-$toggleElementType = $isJ4 ? 'svg' : 'span';
 $toggleElement = $isJ4 ? 'fa-plus fa-minus' : 'icon-plus icon-minus';
 
 // Toggle advanced search elements
 $toggleAdvSearch = <<< JS
 	jQuery(document).ready(function () {
 	    jQuery('#adv-search-button').click(function () {
-	        jQuery(this).find('$toggleElementType').toggleClass('$toggleElement');
+	        jQuery(this).find('span').toggleClass('$toggleElement');
 	        jQuery('#filters-advanced').toggleClass('$toggleClass');
 	    });
 	});
