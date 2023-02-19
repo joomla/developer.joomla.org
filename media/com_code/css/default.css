@@ -77,3 +77,15 @@ button#adv-search-button {
 .form-inline .field-calendar {
     display: inline-block;
 }
+
+#tracker-filters .form-control-sm {
+    width: 90px;
+}
+
+#tracker-filters input, #tracker-filters select {
+    width: 220px;
+}
+
+#tracker-filters .form-inline select, #tracker-filters .form-inline input {
+    display: inline-block;
+}

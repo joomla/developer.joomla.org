@@ -510,15 +510,3 @@ h4.roadmap {
         float: none;
     }
 }
-
-.com_code.view-tracker .form-control-sm {
-    width: 90px;
-}
-
-.com_code.view-tracker input, .com_code.view-tracker select {
-    width: 220px;
-}
-
-.com_code.view-tracker .form-inline select, .com_code.view-tracker .form-inline input {
-    display: inline-block;
-}
