@@ -377,7 +377,7 @@ h4.roadmap {
 }
 /* End jQuery 2015 Hackathon */
 
-/* BPF Image alignment (Temporary for J4 migration - should be moved to classes in the article) */
+/* BPF Image 2013, 2014 and 2019 articles */
 .pbf img {
     max-width: 100%;
     height: auto;
@@ -475,6 +475,7 @@ h4.roadmap {
     animation: 3s linear 0s normal none infinite running shakennotstirred;
 }
 
+/* Responsiveness tweak to com_contact forms */
 @media only screen and (max-width: 480px){
     /* Wraps the copy email field onto a single line for small screens */
     #jform_contact_email_copy-lbl {
