@@ -18,7 +18,6 @@ use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('behavior.formvalidator');
 HTMLHelper::_('behavior.keepalive');
-HTMLHelper::_('formbehavior.chosen', 'select');
 
 $js = <<< JS
 Joomla.submitbutton = function(task) {
@@ -34,13 +33,13 @@ Factory::getDocument()->addScriptDeclaration($js);
 <form action="<?php echo Route::_('index.php?option=com_ghmarkdowndisplay&view=section&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="item-form" class="form-validate">
 	<?php echo LayoutHelper::render('joomla.edit.title_alias', $this); ?>
 	<div class="form-horizontal">
-		<div class="row-fluid">
-			<div class="span9">
+		<div class="row">
+			<div class="col-md-9">
 				<fieldset>
 					<?php echo $this->form->renderFieldset('section'); ?>
 				</fieldset>
 			</div>
-			<div class="span3">
+			<div class="col-md-3">
 				<?php echo LayoutHelper::render('joomla.edit.global', $this); ?>
 			</div>
 		</div>

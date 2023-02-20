@@ -19,7 +19,6 @@ use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.multiselect');
-HTMLHelper::_('formbehavior.chosen', 'select');
 
 $user      = Factory::getUser();
 $listOrder = $this->escape($this->state->get('list.ordering'));
@@ -32,10 +31,10 @@ if ($saveOrder)
 }
 ?>
 <form action="<?php echo Route::_('index.php?option=com_ghmarkdowndisplay&view=sections'); ?>" method="post" name="adminForm" id="adminForm">
-	<div id="j-sidebar-container" class="span2">
+	<div id="j-sidebar-container" class="col-md-2">
 		<?php echo JHtmlSidebar::render(); ?>
 	</div>
-	<div id="j-main-container" class="span10">
+	<div id="j-main-container" class="col-md-10">
 		<?php echo LayoutHelper::render('joomla.searchtools.default', ['view' => $this]); ?>
 		<div class="clearfix"> </div>
 		<?php if (empty($this->items)) : ?>
@@ -46,13 +45,13 @@ if ($saveOrder)
 			<table class="table table-striped" id="sectionList">
 				<thead>
 					<tr>
-						<th width="1%" class="nowrap center hidden-phone">
+						<th width="1%" class="nowrap text-center hidden-phone">
 							<?php echo JHtml::_('searchtools.sort', '', 'a.ordering', $listDirn, $listOrder, null, 'asc', 'JGRID_HEADING_ORDERING', 'icon-menu-2'); ?>
 						</th>
-						<th width="1%" class="center">
+						<th width="1%" class="text-center">
 							<?php echo HTMLHelper::_('grid.checkall'); ?>
 						</th>
-						<th width="5%" class="nowrap center">
+						<th width="5%" class="nowrap text-center">
 							<?php echo HTMLHelper::_('searchtools.sort', 'JSTATUS', 'a.published', $listDirn, $listOrder); ?>
 						</th>
 						<th>
@@ -61,7 +60,7 @@ if ($saveOrder)
 						<th width="20%" class="nowrap">
 							<?php echo HTMLHelper::_('searchtools.sort', 'COM_GHMARKDOWNDISPLAY_HEADING_REPOSITORY', 'r.name', $listDirn, $listOrder); ?>
 						</th>
-						<th width="1%" class="nowrap hidden-phone">
+						<th width="1%" class="nowrap d-none d-md-table-cell">
 							<?php echo HTMLHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
 						</th>
 					</tr>
@@ -72,7 +71,7 @@ if ($saveOrder)
 						$canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->id || $item->checked_out == 0;
 						?>
 						<tr class="row<?php echo $i % 2; ?>">
-							<td class="order nowrap center hidden-phone">
+							<td class="order nowrap text-center d-none d-md-table-cell">
 								<?php
 								$iconClass = '';
 
@@ -88,10 +87,10 @@ if ($saveOrder)
 									<input type="text" style="display:none" name="order[]" size="5" value="<?php echo $item->ordering; ?>" class="width-20 text-area-order">
 								<?php endif; ?>
 							</td>
-							<td class="center">
+							<td class="text-center">
 								<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
 							</td>
-							<td class="center">
+							<td class="text-center">
 								<div class="btn-group">
 									<?php echo HTMLHelper::_('jgrid.published', $item->published, $i, 'sections.'); ?>
 
@@ -100,7 +99,7 @@ if ($saveOrder)
 								</div>
 							</td>
 							<td class="has-context">
-								<div class="pull-left break-word">
+								<div class="float-start break-word">
 									<?php if ($item->checked_out) : ?>
 										<?php echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'sections.', $canCheckin); ?>
 									<?php endif; ?>
@@ -112,7 +111,7 @@ if ($saveOrder)
 							<td>
 								<?php echo $this->escape($item->repository); ?>
 							</td>
-							<td class="hidden-phone">
+							<td class="d-none d-md-table-cell">
 								<?php echo (int) $item->id; ?>
 							</td>
 						</tr>
