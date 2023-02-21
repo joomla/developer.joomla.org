@@ -1,18 +1,3 @@
-/* Generic changes that should be in template */
-.lead {
-    font-family: "Open Sans", sans-serif;
-}
-
-.nav-tabs.flex-column .nav-link.disabled, .nav-tabs.flex-column .nav-link:disabled {
-    border-color: var(--bs-nav-tabs-border-color);
-}
-
-@media(prefers-color-scheme: light) {
-    .nav-tabs.flex-column .nav-link.disabled, .nav-tabs.flex-column .nav-link:disabled {
-        background: #eee;
-    }
-}
-
 /* Homepage */
 #mod-custom125 {
     margin-bottom: 2.75rem;
