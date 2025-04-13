@@ -124,11 +124,11 @@ class PlgContentNightlyBuilds extends CMSPlugin
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_major_list.xml';
 					break;
 
-				case '5.3':
+				case '5.4':
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_minor_list.xml';
 					break;
 
-				case '5.2':
+				case '5.3':
 				case '4.4':
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_patch_list.xml';
 					break;
