@@ -120,16 +120,16 @@ class PlgContentNightlyBuilds extends CMSPlugin
 			// Set the updateserver per branch
 			switch ($branch)
 			{
-				case '6.0':
+				case '7.0':
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_major_list.xml';
 					break;
 
-				case '5.4':
+				case '6.1':
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_minor_list.xml';
 					break;
 
-				case '5.3':
-				case '4.4':
+				case '6.0':
+				case '5.4':
 					$updateserver = 'https://update.joomla.org/core/nightlies/next_patch_list.xml';
 					break;
 
