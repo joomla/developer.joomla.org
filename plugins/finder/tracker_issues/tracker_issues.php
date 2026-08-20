@@ -145,9 +145,9 @@ class PlgFinderTracker_Issues extends Adapter
 	}
 
 	/**
-	 * Method to index an item. The item must be a FinderIndexerResult object.
+	 * Method to index an item. The item must be a Result object.
 	 *
-	 * @param   FinderIndexerResult  $item  The item to index as an FinderIndexerResult object.
+	 * @param   Result  $item  The item to index as an Result object.
 	 *
 	 * @return  void
 	 *
