@@ -9,15 +9,15 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\Component\Finder\Administrator\Indexer\Adapter;
+use Joomla\Component\Finder\Administrator\Indexer\Result;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Version;
-
-JLoader::register('FinderIndexerAdapter', JPATH_ADMINISTRATOR . '/components/com_finder/helpers/indexer/adapter.php');
 
 /**
  * Smart Search adapter for com_code issues.
  */
-class PlgFinderTracker_Issues extends FinderIndexerAdapter
+class PlgFinderTracker_Issues extends Adapter
 {
 	/**
 	 * Affects constructor behavior. If true, language files will be loaded automatically.
@@ -153,7 +153,7 @@ class PlgFinderTracker_Issues extends FinderIndexerAdapter
 	 *
 	 * @throws  Exception on database error.
 	 */
-	protected function index(FinderIndexerResult $item)
+	protected function index(Result $item)
 	{
 		// Check if the extension is enabled
 		if (ComponentHelper::isEnabled($this->extension) == false)
