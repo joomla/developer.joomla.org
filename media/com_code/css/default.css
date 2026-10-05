@@ -41,14 +41,14 @@
 .issue-comment,
 .issue-commit {
     padding: 0;
-    background: #fff;
+    background: var(--bs-tertiary-bg);
     margin-bottom: 1.25rem;
     border: 1px solid #e3e3e3;
 }
 
 .issue-comment__owner,
 .issue-commit__owner {
-    background: #ddd;
+    background: var(--bs-dark-bg-subtle);
     padding: .75rem;
     display: block;
     font-weight: bold;
